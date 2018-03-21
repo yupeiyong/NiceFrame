@@ -23,7 +23,7 @@ namespace NFine.Code
         {
             get
             {
-                string connection = System.Configuration.ConfigurationManager.ConnectionStrings["NFineDbContext"].ConnectionString;
+                string connection = System.Configuration.ConfigurationManager.ConnectionStrings["NiceDbContext"].ConnectionString;
                 if (Encrypt == true)
                 {
                     return DESEncrypt.Decrypt(connection);

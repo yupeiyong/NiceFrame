@@ -24,7 +24,7 @@ namespace NFine.Application.SystemSecurity
             {
                 expression = expression.And(t => t.F_StartIP.Contains(keyword));
             }
-            return service.IQueryable(expression).OrderByDescending(t => t.F_DeleteTime).ToList();
+            return service.Queryable(expression).OrderByDescending(t => t.F_DeleteTime).ToList();
         }
         public FilterIPEntity GetForm(string keyValue)
         {

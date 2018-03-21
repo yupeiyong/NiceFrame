@@ -20,7 +20,7 @@ namespace NFine.Application.SystemManage
 
         public List<ModuleEntity> GetList()
         {
-            return service.IQueryable().OrderBy(t => t.F_SortCode).ToList();
+            return service.Queryable().OrderBy(t => t.F_SortCode).ToList();
         }
         public ModuleEntity GetForm(string keyValue)
         {
@@ -28,7 +28,7 @@ namespace NFine.Application.SystemManage
         }
         public void DeleteForm(string keyValue)
         {
-            if (service.IQueryable().Count(t => t.F_ParentId.Equals(keyValue)) > 0)
+            if (service.Queryable().Count(t => t.F_ParentId.Equals(keyValue)) > 0)
             {
                 throw new Exception("删除失败！操作的对象包含了下级数据。");
             }

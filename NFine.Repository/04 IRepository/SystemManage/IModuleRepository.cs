@@ -4,13 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Data;
-using NFine.Domain.Entity.SystemSecurity;
 
-namespace NFine.Domain.IRepository.SystemSecurity
+using NFine.Domain.Entity.SystemManage;
+using Nice.Data.Repository;
+
+
+namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface ILogRepository : IRepositoryBase<LogEntity>
+    public interface IModuleRepository : IRepositoryBase<ModuleEntity>
     {
-        
     }
 }

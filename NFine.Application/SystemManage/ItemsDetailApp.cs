@@ -29,7 +29,7 @@ namespace NFine.Application.SystemManage
                 expression = expression.And(t => t.F_ItemName.Contains(keyword));
                 expression = expression.Or(t => t.F_ItemCode.Contains(keyword));
             }
-            return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
+            return service.Queryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
         public List<ItemsDetailEntity> GetItemList(string enCode)
         {

@@ -4,14 +4,16 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Data;
+
 using NFine.Domain.Entity.SystemManage;
-using System.Collections.Generic;
+using Nice.Data.Repository;
+
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IModuleButtonRepository : IRepositoryBase<ModuleButtonEntity>
+    public interface IUserRepository : IRepositoryBase<UserEntity>
     {
-        void SubmitCloneButton(List<ModuleButtonEntity> entitys);
+        void DeleteForm(string keyValue);
+        void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue);
     }
 }

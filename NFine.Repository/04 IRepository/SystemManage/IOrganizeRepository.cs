@@ -4,17 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NFine.Domain.ViewModel
+using NFine.Domain.Entity.SystemManage;
+using Nice.Data.Repository;
+
+
+namespace NFine.Domain.IRepository.SystemManage
 {
-    public class AuthorizeActionModel
+    public interface IOrganizeRepository : IRepositoryBase<OrganizeEntity>
     {
-        public string F_Id { set; get; }
-        public string F_UrlAddress { set; get; }
     }
 }

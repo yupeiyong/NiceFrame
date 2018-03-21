@@ -4,14 +4,16 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Data;
-using NFine.Domain.Entity.SystemManage;
-using System.Collections.Generic;
 
-namespace NFine.Domain.IRepository.SystemManage
+using NFine.Domain.Entity.SystemSecurity;
+using Nice.Data.Repository;
+
+
+namespace NFine.Domain.IRepository.SystemSecurity
 {
-    public interface IItemsDetailRepository : IRepositoryBase<ItemsDetailEntity>
+    public interface IDbBackupRepository : IRepositoryBase<DbBackupEntity>
     {
-        List<ItemsDetailEntity> GetItemList(string enCode);
+        void DeleteForm(string keyValue);
+        void ExecuteDbBackup(DbBackupEntity dbBackupEntity);
     }
 }

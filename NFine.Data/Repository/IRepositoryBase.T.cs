@@ -1,17 +1,12 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Code;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
+using NFine.Code;
 
-namespace NFine.Data
+
+namespace Nice.Data.Repository
 {
     /// <summary>
     /// 仓储接口
@@ -26,8 +21,8 @@ namespace NFine.Data
         int Delete(Expression<Func<TEntity, bool>> predicate);
         TEntity FindEntity(object keyValue);
         TEntity FindEntity(Expression<Func<TEntity, bool>> predicate);
-        IQueryable<TEntity> IQueryable();
-        IQueryable<TEntity> IQueryable(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Queryable();
+        IQueryable<TEntity> Queryable(Expression<Func<TEntity, bool>> predicate);
         List<TEntity> FindList(string strSql);
         List<TEntity> FindList(string strSql, DbParameter[] dbParameter);
         List<TEntity> FindList(Pagination pagination);

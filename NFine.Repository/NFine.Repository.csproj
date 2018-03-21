@@ -39,6 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="04 IRepository\SystemManage\IAreaRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IItemsDetailRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IItemsRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IModuleButtonRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IModuleRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IOrganizeRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IRoleAuthorizeRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IRoleRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IUserLogOnRepository.cs" />
+    <Compile Include="04 IRepository\SystemManage\IUserRepository.cs" />
+    <Compile Include="04 IRepository\SystemSecurity\IDbBackupRepository.cs" />
+    <Compile Include="04 IRepository\SystemSecurity\IFilterIPRepository.cs" />
+    <Compile Include="04 IRepository\SystemSecurity\ILogRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManage\ItemsDetailRepository.cs" />
     <Compile Include="SystemManage\ItemsRepository.cs" />
@@ -59,9 +72,9 @@
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
       <Name>NFine.Code</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Data\NFine.Data.csproj">
+    <ProjectReference Include="..\NFine.Data\Nice.Data.csproj">
       <Project>{f71003e8-a836-48f4-9df6-df9095cebd18}</Project>
-      <Name>NFine.Data</Name>
+      <Name>Nice.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
