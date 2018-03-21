@@ -4,15 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Data;
+
 using NFine.Domain.Entity.SystemManage;
-using System.Collections.Generic;
+using Nice.Data.Repository;
+
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IRoleRepository : IRepositoryBase<RoleEntity>
+    public interface IItemsRepository : IRepositoryBase<ItemsEntity>
     {
-        void DeleteForm(string keyValue);
-        void SubmitForm(RoleEntity roleEntity, List<RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue);
     }
 }

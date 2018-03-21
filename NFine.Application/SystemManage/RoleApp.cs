@@ -28,7 +28,7 @@ namespace NFine.Application.SystemManage
                 expression = expression.Or(t => t.F_EnCode.Contains(keyword));
             }
             expression = expression.And(t => t.F_Category == 1);
-            return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
+            return service.Queryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
         public RoleEntity GetForm(string keyValue)
         {

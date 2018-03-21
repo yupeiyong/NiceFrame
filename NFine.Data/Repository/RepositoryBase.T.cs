@@ -1,11 +1,4 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Code;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
@@ -13,8 +6,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using NFine.Code;
+using Nice.Data.DBContext;
 
-namespace NFine.Data
+
+namespace Nice.Data.Repository
 {
     /// <summary>
     /// 仓储实现
@@ -22,7 +18,7 @@ namespace NFine.Data
     /// <typeparam name="TEntity"></typeparam>
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class,new()
     {
-        public NFineDbContext dbcontext = new NFineDbContext();
+        public NiceDbContext dbcontext = new NiceDbContext();
         public int Insert(TEntity entity)
         {
             dbcontext.Entry<TEntity>(entity).State = EntityState.Added;
@@ -71,11 +67,11 @@ namespace NFine.Data
         {
             return dbcontext.Set<TEntity>().FirstOrDefault(predicate);
         }
-        public IQueryable<TEntity> IQueryable()
+        public IQueryable<TEntity> Queryable()
         {
             return dbcontext.Set<TEntity>();
         }
-        public IQueryable<TEntity> IQueryable(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Queryable(Expression<Func<TEntity, bool>> predicate)
         {
             return dbcontext.Set<TEntity>().Where(predicate);
         }

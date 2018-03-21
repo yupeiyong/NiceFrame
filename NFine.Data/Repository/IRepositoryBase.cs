@@ -1,17 +1,13 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Code;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
+using NFine.Code;
 
-namespace NFine.Data
+
+namespace Nice.Data.Repository
 {
     public interface IRepositoryBase : IDisposable
     {

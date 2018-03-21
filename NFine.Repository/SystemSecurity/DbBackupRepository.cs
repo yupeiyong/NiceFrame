@@ -5,11 +5,12 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Data;
-using NFine.Data.Extensions;
 using NFine.Domain.Entity.SystemSecurity;
 using NFine.Domain.IRepository.SystemSecurity;
 using NFine.Repository.SystemSecurity;
+using Nice.Data.Extensions;
+using Nice.Data.Repository;
+
 
 namespace NFine.Repository.SystemSecurity
 {

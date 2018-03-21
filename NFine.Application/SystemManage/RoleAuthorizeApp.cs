@@ -7,11 +7,12 @@
 using NFine.Code;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
-using NFine.Domain.ViewModel;
 using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.ViewModel;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -23,7 +24,7 @@ namespace NFine.Application.SystemManage
 
         public List<RoleAuthorizeEntity> GetList(string ObjectId)
         {
-            return service.IQueryable(t => t.F_ObjectId == ObjectId).ToList();
+            return service.Queryable(t => t.F_ObjectId == ObjectId).ToList();
         }
         public List<ModuleEntity> GetMenuList(string roleId)
         {
@@ -35,7 +36,7 @@ namespace NFine.Application.SystemManage
             else
             {
                 var moduledata = moduleApp.GetList();
-                var authorizedata = service.IQueryable(t => t.F_ObjectId == roleId && t.F_ItemType == 1).ToList();
+                var authorizedata = service.Queryable(t => t.F_ObjectId == roleId && t.F_ItemType == 1).ToList();
                 foreach (var item in authorizedata)
                 {
                     ModuleEntity moduleEntity = moduledata.Find(t => t.F_Id == item.F_ItemId);
@@ -57,7 +58,7 @@ namespace NFine.Application.SystemManage
             else
             {
                 var buttondata = moduleButtonApp.GetList();
-                var authorizedata = service.IQueryable(t => t.F_ObjectId == roleId && t.F_ItemType == 2).ToList();
+                var authorizedata = service.Queryable(t => t.F_ObjectId == roleId && t.F_ItemType == 2).ToList();
                 foreach (var item in authorizedata)
                 {
                     ModuleButtonEntity moduleButtonEntity = buttondata.Find(t => t.F_Id == item.F_ItemId);
@@ -77,7 +78,7 @@ namespace NFine.Application.SystemManage
             {
                 var moduledata = moduleApp.GetList();
                 var buttondata = moduleButtonApp.GetList();
-                var authorizedata = service.IQueryable(t => t.F_ObjectId == roleId).ToList();
+                var authorizedata = service.Queryable(t => t.F_ObjectId == roleId).ToList();
                 foreach (var item in authorizedata)
                 {
                     if (item.F_ItemType == 1)

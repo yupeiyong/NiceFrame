@@ -4,10 +4,12 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Data;
+
 using NFine.Domain.Entity.SystemSecurity;
 using NFine.Domain.IRepository.SystemSecurity;
 using NFine.Repository.SystemSecurity;
+using Nice.Data.Repository;
+
 
 namespace NFine.Repository.SystemSecurity
 {

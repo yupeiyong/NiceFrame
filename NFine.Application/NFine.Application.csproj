@@ -65,9 +65,9 @@
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
       <Name>NFine.Code</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Data\NFine.Data.csproj">
+    <ProjectReference Include="..\NFine.Data\Nice.Data.csproj">
       <Project>{f71003e8-a836-48f4-9df6-df9095cebd18}</Project>
-      <Name>NFine.Data</Name>
+      <Name>Nice.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
@@ -76,6 +76,10 @@
     <ProjectReference Include="..\NFine.Repository\NFine.Repository.csproj">
       <Project>{875233bf-ea15-49e0-9a9c-77884a897ff6}</Project>
       <Name>NFine.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nice.ViewModel\Nice.ViewModel.csproj">
+      <Project>{135a8086-9c4c-4c88-8a71-73ef5af95996}</Project>
+      <Name>Nice.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

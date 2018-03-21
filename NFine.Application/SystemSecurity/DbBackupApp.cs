@@ -36,7 +36,7 @@ namespace NFine.Application.SystemSecurity
                         break;
                 }
             }
-            return service.IQueryable(expression).OrderByDescending(t => t.F_BackupTime).ToList();
+            return service.Queryable(expression).OrderByDescending(t => t.F_BackupTime).ToList();
         }
         public DbBackupEntity GetForm(string keyValue)
         {
