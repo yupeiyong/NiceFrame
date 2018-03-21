@@ -20,7 +20,7 @@ namespace Nice.Data.DBContext
             //this.Configuration.ValidateOnSaveEnabled = false;
             //this.Configuration.LazyLoadingEnabled = false;
             //this.Configuration.ProxyCreationEnabled = false;
-
+             
             Configuration.ProxyCreationEnabled = true;
             Configuration.AutoDetectChangesEnabled = true; 
             Configuration.LazyLoadingEnabled = true;
