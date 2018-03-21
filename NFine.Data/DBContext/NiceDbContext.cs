@@ -22,7 +22,7 @@ namespace Nice.Data.DBContext
             //this.Configuration.ProxyCreationEnabled = false;
 
             Configuration.ProxyCreationEnabled = true;
-            Configuration.AutoDetectChangesEnabled = true;
+            Configuration.AutoDetectChangesEnabled = true; 
             Configuration.LazyLoadingEnabled = true;
             Configuration.EnsureTransactionsForFunctionsAndCommands = false;
             Configuration.UseDatabaseNullSemantics = true;
