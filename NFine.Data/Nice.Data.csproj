@@ -31,11 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -51,6 +51,15 @@
   <ItemGroup>
     <Compile Include="DBContext\NiceDbContext.cs" />
     <Compile Include="Extensions\DbHelper.cs" />
+    <Compile Include="Migrations\201803211531556_InitialCreate.cs" />
+    <Compile Include="Migrations\201803211531556_InitialCreate.Designer.cs">
+      <DependentUpon>201803211531556_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803211542517_nicedbcontext.cs" />
+    <Compile Include="Migrations\201803211542517_nicedbcontext.Designer.cs">
+      <DependentUpon>201803211542517_nicedbcontext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\IRepositoryBase.cs" />
     <Compile Include="Repository\IRepositoryBase.T.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +78,22 @@
       <Project>{7DC886CD-B8A0-44E8-AADD-57FCB0CFECB8}</Project>
       <Name>NFine.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NFine.Mapping\NFine.Mapping.csproj">
+      <Project>{4E642CBE-F6C5-4CB9-9474-6B349652FE77}</Project>
+      <Name>NFine.Mapping</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803211531556_InitialCreate.resx">
+      <DependentUpon>201803211531556_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803211542517_nicedbcontext.resx">
+      <DependentUpon>201803211542517_nicedbcontext.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

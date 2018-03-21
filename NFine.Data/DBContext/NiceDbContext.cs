@@ -7,7 +7,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
 using NFine.Domain;
-
+using NFine.Mapping.SystemManage;
 
 namespace Nice.Data.DBContext
 {
@@ -36,24 +36,23 @@ namespace Nice.Data.DBContext
         {
             modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(18, 8));
-            
+
             var modelTypes = new List<Type>();
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            var assemb= typeof(IEntity).Assembly;
+            try
             {
-                try
-                {
-                    var types = assembly.GetTypes().Where(t => t.IsClass && t.IsPublic && !t.IsAbstract && (!t.IsNested && !t.IsGenericType) && t.GetInterfaces()
-                    .Any(m => m.GetGenericTypeDefinition() == typeof(IEntity<>)));
+                var types = assemb.GetTypes().Where(t => t.IsClass && t.IsPublic && !t.IsAbstract && (!t.IsNested && !t.IsGenericType) && t.BaseType != null && t.BaseType == typeof(IEntity)).ToList();
+                if (types.Count > 0)
                     modelTypes.AddRange(types);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
+            var mappingAssemb = typeof(UserMap).Assembly;
             //获取映射模型
-            var mapTypes = Assembly.GetExecutingAssembly().GetTypes()
+            var mapTypes = mappingAssemb.GetTypes()
                 .Where(type => !string.IsNullOrEmpty(type.Namespace))
                 .Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>)).ToList();
             mapTypes.ForEach(t =>

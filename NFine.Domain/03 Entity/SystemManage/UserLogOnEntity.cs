@@ -8,7 +8,7 @@ using System;
 
 namespace NFine.Domain.Entity.SystemManage
 {
-    public class UserLogOnEntity
+    public class UserLogOnEntity:IEntity
     {
         public string F_Id { get; set; }
         public string F_UserId { get; set; }

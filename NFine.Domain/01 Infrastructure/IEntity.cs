@@ -9,7 +9,7 @@ using System;
 
 namespace NFine.Domain
 {
-    public class IEntity<TEntity>
+    public class IEntity
     {
         public void Create()
         {

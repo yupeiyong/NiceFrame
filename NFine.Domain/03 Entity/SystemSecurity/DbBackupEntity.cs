@@ -8,7 +8,7 @@ using System;
 
 namespace NFine.Domain.Entity.SystemSecurity
 {
-    public class FilterIPEntity : IEntity<FilterIPEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class FilterIPEntity : IEntity, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public bool? F_Type { get; set; }
