@@ -615,7 +615,7 @@
   <ItemGroup>
     <Content Include="Areas\SystemManage\Views\User\Info.cshtml" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
+    <None Include="Properties\PublishProfiles\NiceFrame.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
