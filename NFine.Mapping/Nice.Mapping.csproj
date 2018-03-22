@@ -7,8 +7,8 @@
     <ProjectGuid>{4E642CBE-F6C5-4CB9-9474-6B349652FE77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NFine.Mapping</RootNamespace>
-    <AssemblyName>NFine.Mapping</AssemblyName>
+    <RootNamespace>Nice.Mapping</RootNamespace>
+    <AssemblyName>Nice.Mapping</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
