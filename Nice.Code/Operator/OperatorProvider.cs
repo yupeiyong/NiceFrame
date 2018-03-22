@@ -39,7 +39,7 @@ namespace Nice.Common.Operator
                 WebHelper.WriteSession(LoginUserKey, DesEncrypt.Encrypt(operatorModel.ToJson()));
             }
             WebHelper.WriteCookie("nfine_mac", Md5.md5(Net.Net.GetMacByNetworkInterface().ToJson(), 32));
-            WebHelper.WriteCookie("nfine_licence", Licence.GetLicence());
+            //WebHelper.WriteCookie("nfine_licence", Licence.GetLicence());
         }
         public void RemoveCurrent()
         {
