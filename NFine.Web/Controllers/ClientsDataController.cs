@@ -6,7 +6,6 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +13,7 @@ using System.Web.Mvc;
 using Nice.Common.Extend;
 using Nice.Common.Json;
 using Nice.Common.Operator;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Web.Controllers
@@ -58,7 +58,7 @@ namespace NFine.Web.Controllers
             OrganizeApp organizeApp = new OrganizeApp();
             var data = organizeApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (OrganizeEntity item in data)
+            foreach (OrganizeBaseEntity item in data)
             {
                 var fieldItem = new
                 {
@@ -74,7 +74,7 @@ namespace NFine.Web.Controllers
             RoleApp roleApp = new RoleApp();
             var data = roleApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (RoleEntity item in data)
+            foreach (RoleBaseEntity item in data)
             {
                 var fieldItem = new
                 {
@@ -90,7 +90,7 @@ namespace NFine.Web.Controllers
             DutyApp dutyApp = new DutyApp();
             var data = dutyApp.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (RoleEntity item in data)
+            foreach (RoleBaseEntity item in data)
             {
                 var fieldItem = new
                 {
@@ -106,11 +106,11 @@ namespace NFine.Web.Controllers
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
             return ToMenuJson(new RoleAuthorizeApp().GetMenuList(roleId), "0");
         }
-        private string ToMenuJson(List<ModuleEntity> data, string parentId)
+        private string ToMenuJson(List<ModuleBaseEntity> data, string parentId)
         {
             StringBuilder sbJson = new StringBuilder();
             sbJson.Append("[");
-            List<ModuleEntity> entitys = data.FindAll(t => t.F_ParentId == parentId);
+            List<ModuleBaseEntity> entitys = data.FindAll(t => t.F_ParentId == parentId);
             if (entitys.Count > 0)
             {
                 foreach (var item in entitys)
@@ -128,9 +128,9 @@ namespace NFine.Web.Controllers
         {
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
             var data = new RoleAuthorizeApp().GetButtonList(roleId);
-            var dataModuleId = data.Distinct(new ExtList<ModuleButtonEntity>("F_ModuleId"));
+            var dataModuleId = data.Distinct(new ExtList<ModuleButtonBaseEntity>("F_ModuleId"));
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            foreach (ModuleButtonEntity item in dataModuleId)
+            foreach (ModuleButtonBaseEntity item in dataModuleId)
             {
                 var buttonList = data.Where(t => t.F_ModuleId.Equals(item.F_ModuleId));
                 dictionary.Add(item.F_ModuleId, buttonList);

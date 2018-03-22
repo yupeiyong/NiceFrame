@@ -5,16 +5,16 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IRoleRepository : IRepositoryBase<RoleEntity>
+    public interface IRoleRepository : IRepositoryBase<RoleBaseEntity>
     {
         void DeleteForm(string keyValue);
-        void SubmitForm(RoleEntity roleEntity, List<RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue);
+        void SubmitForm(RoleBaseEntity roleBaseEntity, List<RoleAuthorizeBaseEntity> roleAuthorizeEntitys, string keyValue);
     }
 }

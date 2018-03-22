@@ -6,7 +6,6 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,6 +13,7 @@ using Nice.Common.Json;
 using Nice.Common.Web;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Web.Areas.SystemManage.Controllers
@@ -28,7 +28,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = areaApp.GetList();
             var treeList = new List<TreeSelectModel>();
-            foreach (AreaEntity item in data)
+            foreach (AreaBaseEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
                 treeModel.id = item.F_Id;
@@ -44,7 +44,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = areaApp.GetList();
             var treeList = new List<TreeGridModel>();
-            foreach (AreaEntity item in data)
+            foreach (AreaBaseEntity item in data)
             {
                 TreeGridModel treeModel = new TreeGridModel();
                 bool hasChildren = data.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -72,9 +72,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(AreaEntity areaEntity, string keyValue)
+        public ActionResult SubmitForm(AreaBaseEntity areaBaseEntity, string keyValue)
         {
-            areaApp.SubmitForm(areaEntity, keyValue);
+            areaApp.SubmitForm(areaBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]

@@ -5,7 +5,6 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
@@ -13,6 +12,7 @@ using System.Collections.Generic;
 using Nice.Common.Extend;
 using Nice.Common.Security;
 using Nice.Common.Web;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Application.SystemManage
@@ -22,9 +22,9 @@ namespace NFine.Application.SystemManage
         private IUserRepository service = new UserRepository();
         private UserLogOnApp userLogOnApp = new UserLogOnApp();
 
-        public List<UserEntity> GetList(Pagination pagination, string keyword)
+        public List<UserBaseEntity> GetList(Pagination pagination, string keyword)
         {
-            var expression = ExtLinq.True<UserEntity>();
+            var expression = ExtLinq.True<UserBaseEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_Account.Contains(keyword));
@@ -34,7 +34,7 @@ namespace NFine.Application.SystemManage
             expression = expression.And(t => t.F_Account != "admin");
             return service.FindList(expression, pagination);
         }
-        public UserEntity GetForm(string keyValue)
+        public UserBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -42,43 +42,43 @@ namespace NFine.Application.SystemManage
         {
             service.DeleteForm(keyValue);
         }
-        public void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        public void SubmitForm(UserBaseEntity userBaseEntity, UserLogOnBaseEntity userLogOnBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                userEntity.Modify(keyValue);
+                userBaseEntity.Modify(keyValue);
             }
             else
             {
-                userEntity.Create();
+                userBaseEntity.Create();
             }
-            service.SubmitForm(userEntity, userLogOnEntity, keyValue);
+            service.SubmitForm(userBaseEntity, userLogOnBaseEntity, keyValue);
         }
-        public void UpdateForm(UserEntity userEntity)
+        public void UpdateForm(UserBaseEntity userBaseEntity)
         {
-            service.Update(userEntity);
+            service.Update(userBaseEntity);
         }
-        public UserEntity CheckLogin(string username, string password)
+        public UserBaseEntity CheckLogin(string username, string password)
         {
-            UserEntity userEntity = service.FindEntity(t => t.F_Account == username);
-            if (userEntity != null)
+            UserBaseEntity userBaseEntity = service.FindEntity(t => t.F_Account == username);
+            if (userBaseEntity != null)
             {
-                if (userEntity.F_EnabledMark == true)
+                if (userBaseEntity.F_EnabledMark == true)
                 {
-                    UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userEntity.F_Id);
-                    string dbPassword = Md5.md5(DesEncrypt.Encrypt(password.ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
-                    if (dbPassword == userLogOnEntity.F_UserPassword)
+                    UserLogOnBaseEntity userLogOnBaseEntity = userLogOnApp.GetForm(userBaseEntity.F_Id);
+                    string dbPassword = Md5.md5(DesEncrypt.Encrypt(password.ToLower(), userLogOnBaseEntity.F_UserSecretkey).ToLower(), 32).ToLower();
+                    if (dbPassword == userLogOnBaseEntity.F_UserPassword)
                     {
                         DateTime lastVisitTime = DateTime.Now;
-                        int LogOnCount = (userLogOnEntity.F_LogOnCount).ToInt() + 1;
-                        if (userLogOnEntity.F_LastVisitTime != null)
+                        int LogOnCount = (userLogOnBaseEntity.F_LogOnCount).ToInt() + 1;
+                        if (userLogOnBaseEntity.F_LastVisitTime != null)
                         {
-                            userLogOnEntity.F_PreviousVisitTime = userLogOnEntity.F_LastVisitTime.ToDate();
+                            userLogOnBaseEntity.F_PreviousVisitTime = userLogOnBaseEntity.F_LastVisitTime.ToDate();
                         }
-                        userLogOnEntity.F_LastVisitTime = lastVisitTime;
-                        userLogOnEntity.F_LogOnCount = LogOnCount;
-                        userLogOnApp.UpdateForm(userLogOnEntity);
-                        return userEntity;
+                        userLogOnBaseEntity.F_LastVisitTime = lastVisitTime;
+                        userLogOnBaseEntity.F_LogOnCount = LogOnCount;
+                        userLogOnApp.UpdateForm(userLogOnBaseEntity);
+                        return userBaseEntity;
                     }
                     else
                     {

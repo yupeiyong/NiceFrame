@@ -428,9 +428,9 @@
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
       <Name>Nice.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
+    <ProjectReference Include="..\NFine.Domain\Nice.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
-      <Name>NFine.Domain</Name>
+      <Name>Nice.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\NFine.Mapping\NFine.Mapping.csproj">
       <Project>{4e642cbe-f6c5-4cb9-9474-6b349652fe77}</Project>

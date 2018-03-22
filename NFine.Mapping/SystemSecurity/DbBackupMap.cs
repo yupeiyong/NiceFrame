@@ -4,12 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Domain.Entity.SystemSecurity;
+
 using System.Data.Entity.ModelConfiguration;
+using Nice.Domain.Entity.SystemSecurity;
+
 
 namespace NFine.Mapping.SystemSecurity
 {
-    public class DbBackupMap : EntityTypeConfiguration<DbBackupEntity>
+    public class DbBackupMap : EntityTypeConfiguration<DbBackupBaseEntity>
     {
         public DbBackupMap()
         {

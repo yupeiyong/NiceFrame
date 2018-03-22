@@ -6,9 +6,9 @@
 *********************************************************************************/
 using NFine.Application.SystemSecurity;
 using NFine.Code;
-using NFine.Domain.Entity.SystemSecurity;
 using System.Web.Mvc;
 using Nice.Common.Json;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Web.Areas.SystemSecurity.Controllers
@@ -34,9 +34,9 @@ namespace NFine.Web.Areas.SystemSecurity.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(FilterIPEntity filterIPEntity, string keyValue)
+        public ActionResult SubmitForm(FilterIpBaseEntity filterIpBaseEntity, string keyValue)
         {
-            filterIPApp.SubmitForm(filterIPEntity, keyValue);
+            filterIPApp.SubmitForm(filterIpBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]

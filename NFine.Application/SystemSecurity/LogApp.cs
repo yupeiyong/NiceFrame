@@ -5,7 +5,6 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemSecurity;
 using NFine.Domain.IRepository.SystemSecurity;
 using NFine.Repository.SystemSecurity;
 using System;
@@ -16,6 +15,7 @@ using Nice.Common.Json;
 using Nice.Common.Net;
 using Nice.Common.Operator;
 using Nice.Common.Web;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Application.SystemSecurity
@@ -24,9 +24,9 @@ namespace NFine.Application.SystemSecurity
     {
         private ILogRepository service = new LogRepository();
 
-        public List<LogEntity> GetList(Pagination pagination, string queryJson)
+        public List<LogBaseEntity> GetList(Pagination pagination, string queryJson)
         {
-            var expression = ExtLinq.True<LogEntity>();
+            var expression = ExtLinq.True<LogBaseEntity>();
             var queryParam = queryJson.ToJObject();
             if (!queryParam["keyword"].IsEmpty())
             {
@@ -73,32 +73,32 @@ namespace NFine.Application.SystemSecurity
             {
                 operateTime = DateTime.Now.AddMonths(-3);
             }
-            var expression = ExtLinq.True<LogEntity>();
+            var expression = ExtLinq.True<LogBaseEntity>();
             expression = expression.And(t => t.F_Date <= operateTime);
             service.Delete(expression);
         }
         public void WriteDbLog(bool result, string resultLog)
         {
-            LogEntity logEntity = new LogEntity();
-            logEntity.F_Id = Common.GuId();
-            logEntity.F_Date = DateTime.Now;
-            logEntity.F_Account = OperatorProvider.Provider.GetCurrent().UserCode;
-            logEntity.F_NickName = OperatorProvider.Provider.GetCurrent().UserName;
-            logEntity.F_IPAddress = Net.Ip;
-            logEntity.F_IPAddressName = Net.GetLocation(logEntity.F_IPAddress);
-            logEntity.F_Result = result;
-            logEntity.F_Description = resultLog;
-            logEntity.Create();
-            service.Insert(logEntity);
+            LogBaseEntity logBaseEntity = new LogBaseEntity();
+            logBaseEntity.F_Id = Common.GuId();
+            logBaseEntity.F_Date = DateTime.Now;
+            logBaseEntity.F_Account = OperatorProvider.Provider.GetCurrent().UserCode;
+            logBaseEntity.F_NickName = OperatorProvider.Provider.GetCurrent().UserName;
+            logBaseEntity.F_IPAddress = Net.Ip;
+            logBaseEntity.F_IPAddressName = Net.GetLocation(logBaseEntity.F_IPAddress);
+            logBaseEntity.F_Result = result;
+            logBaseEntity.F_Description = resultLog;
+            logBaseEntity.Create();
+            service.Insert(logBaseEntity);
         }
-        public void WriteDbLog(LogEntity logEntity)
+        public void WriteDbLog(LogBaseEntity logBaseEntity)
         {
-            logEntity.F_Id = Common.GuId();
-            logEntity.F_Date = DateTime.Now;
-            logEntity.F_IPAddress = "117.81.192.182";
-            logEntity.F_IPAddressName = Net.GetLocation(logEntity.F_IPAddress);
-            logEntity.Create();
-            service.Insert(logEntity);
+            logBaseEntity.F_Id = Common.GuId();
+            logBaseEntity.F_Date = DateTime.Now;
+            logBaseEntity.F_IPAddress = "117.81.192.182";
+            logBaseEntity.F_IPAddressName = Net.GetLocation(logBaseEntity.F_IPAddress);
+            logBaseEntity.Create();
+            service.Insert(logBaseEntity);
         }
     }
 }

@@ -5,13 +5,13 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemSecurity;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Domain.IRepository.SystemSecurity
 {
-    public interface ILogRepository : IRepositoryBase<LogEntity>
+    public interface ILogRepository : IRepositoryBase<LogBaseEntity>
     {
         
     }

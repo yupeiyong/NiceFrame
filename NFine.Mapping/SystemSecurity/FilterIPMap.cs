@@ -4,12 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Domain.Entity.SystemSecurity;
+
 using System.Data.Entity.ModelConfiguration;
+using Nice.Domain.Entity.SystemSecurity;
+
 
 namespace NFine.Mapping.SystemSecurity
 {
-    public class FilterIPMap : EntityTypeConfiguration<FilterIPEntity>
+    public class FilterIPMap : EntityTypeConfiguration<FilterIpBaseEntity>
     {
         public FilterIPMap()
         {

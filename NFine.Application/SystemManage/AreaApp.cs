@@ -4,12 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Domain.Entity.SystemManage;
+
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Domain.Entity.SystemManage;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -17,11 +19,11 @@ namespace NFine.Application.SystemManage
     {
         private IAreaRepository service = new AreaRepository();
 
-        public List<AreaEntity> GetList()
+        public List<AreaBaseEntity> GetList()
         {
             return service.Queryable().ToList();
         }
-        public AreaEntity GetForm(string keyValue)
+        public AreaBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -36,17 +38,17 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(AreaEntity areaEntity, string keyValue)
+        public void SubmitForm(AreaBaseEntity areaBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                areaEntity.Modify(keyValue);
-                service.Update(areaEntity);
+                areaBaseEntity.Modify(keyValue);
+                service.Update(areaBaseEntity);
             }
             else
             {
-                areaEntity.Create();
-                service.Insert(areaEntity);
+                areaBaseEntity.Create();
+                service.Insert(areaBaseEntity);
             }
         }
     }

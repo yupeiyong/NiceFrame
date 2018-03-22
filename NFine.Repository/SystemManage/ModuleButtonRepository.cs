@@ -5,18 +5,18 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System.Collections.Generic;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Repository.SystemManage
 {
-    public class ModuleButtonRepository : RepositoryBase<ModuleButtonEntity>, IModuleButtonRepository
+    public class ModuleButtonRepository : RepositoryBase<ModuleButtonBaseEntity>, IModuleButtonRepository
     {
-        public void SubmitCloneButton(List<ModuleButtonEntity> entitys)
+        public void SubmitCloneButton(List<ModuleButtonBaseEntity> entitys)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {

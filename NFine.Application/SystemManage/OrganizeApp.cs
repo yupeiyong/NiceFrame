@@ -4,12 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Domain.Entity.SystemManage;
+
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Domain.Entity.SystemManage;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -17,11 +19,11 @@ namespace NFine.Application.SystemManage
     {
         private IOrganizeRepository service = new OrganizeRepository();
 
-        public List<OrganizeEntity> GetList()
+        public List<OrganizeBaseEntity> GetList()
         {
             return service.Queryable().OrderBy(t => t.F_CreatorTime).ToList();
         }
-        public OrganizeEntity GetForm(string keyValue)
+        public OrganizeBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -36,17 +38,17 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(OrganizeEntity organizeEntity, string keyValue)
+        public void SubmitForm(OrganizeBaseEntity organizeBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                organizeEntity.Modify(keyValue);
-                service.Update(organizeEntity);
+                organizeBaseEntity.Modify(keyValue);
+                service.Update(organizeBaseEntity);
             }
             else
             {
-                organizeEntity.Create();
-                service.Insert(organizeEntity);
+                organizeBaseEntity.Create();
+                service.Insert(organizeBaseEntity);
             }
         }
     }

@@ -5,7 +5,6 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemSecurity;
 using NFine.Domain.IRepository.SystemSecurity;
 using NFine.Repository.SystemSecurity;
 using System;
@@ -14,6 +13,7 @@ using System.Linq;
 using Nice.Common;
 using Nice.Common.Extend;
 using Nice.Common.Json;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Application.SystemSecurity
@@ -22,9 +22,9 @@ namespace NFine.Application.SystemSecurity
     {
         private IDbBackupRepository service = new DbBackupRepository();
 
-        public List<DbBackupEntity> GetList(string queryJson)
+        public List<DbBackupBaseEntity> GetList(string queryJson)
         {
-            var expression = ExtLinq.True<DbBackupEntity>();
+            var expression = ExtLinq.True<DbBackupBaseEntity>();
             var queryParam = queryJson.ToJObject();
             if (!queryParam["condition"].IsEmpty() && !queryParam["keyword"].IsEmpty())
             {
@@ -42,7 +42,7 @@ namespace NFine.Application.SystemSecurity
             }
             return service.Queryable(expression).OrderByDescending(t => t.F_BackupTime).ToList();
         }
-        public DbBackupEntity GetForm(string keyValue)
+        public DbBackupBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -50,12 +50,12 @@ namespace NFine.Application.SystemSecurity
         {
             service.DeleteForm(keyValue);
         }
-        public void SubmitForm(DbBackupEntity dbBackupEntity)
+        public void SubmitForm(DbBackupBaseEntity dbBackupBaseEntity)
         {
-            dbBackupEntity.F_Id = Common.GuId();
-            dbBackupEntity.F_EnabledMark = true;
-            dbBackupEntity.F_BackupTime = DateTime.Now;
-            service.ExecuteDbBackup(dbBackupEntity);
+            dbBackupBaseEntity.F_Id = Common.GuId();
+            dbBackupBaseEntity.F_EnabledMark = true;
+            dbBackupBaseEntity.F_BackupTime = DateTime.Now;
+            service.ExecuteDbBackup(dbBackupBaseEntity);
         }
     }
 }

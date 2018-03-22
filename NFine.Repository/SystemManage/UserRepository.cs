@@ -5,43 +5,43 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using Nice.Common;
 using Nice.Common.Security;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Repository.SystemManage
 {
-    public class UserRepository : RepositoryBase<UserEntity>, IUserRepository
+    public class UserRepository : RepositoryBase<UserBaseEntity>, IUserRepository
     {
         public void DeleteForm(string keyValue)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
-                db.Delete<UserEntity>(t => t.F_Id == keyValue);
-                db.Delete<UserLogOnEntity>(t => t.F_UserId == keyValue);
+                db.Delete<UserBaseEntity>(t => t.F_Id == keyValue);
+                db.Delete<UserLogOnBaseEntity>(t => t.F_UserId == keyValue);
                 db.Commit();
             }
         }
-        public void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        public void SubmitForm(UserBaseEntity userBaseEntity, UserLogOnBaseEntity userLogOnBaseEntity, string keyValue)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
                 if (!string.IsNullOrEmpty(keyValue))
                 {
-                    db.Update(userEntity);
+                    db.Update(userBaseEntity);
                 }
                 else
                 {
-                    userLogOnEntity.F_Id = userEntity.F_Id;
-                    userLogOnEntity.F_UserId = userEntity.F_Id;
-                    userLogOnEntity.F_UserSecretkey = Md5.md5(Common.CreateNo(), 16).ToLower();
-                    userLogOnEntity.F_UserPassword = Md5.md5(DesEncrypt.Encrypt(Md5.md5(userLogOnEntity.F_UserPassword, 32).ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
-                    db.Insert(userEntity);
-                    db.Insert(userLogOnEntity);
+                    userLogOnBaseEntity.F_Id = userBaseEntity.F_Id;
+                    userLogOnBaseEntity.F_UserId = userBaseEntity.F_Id;
+                    userLogOnBaseEntity.F_UserSecretkey = Md5.md5(Common.CreateNo(), 16).ToLower();
+                    userLogOnBaseEntity.F_UserPassword = Md5.md5(DesEncrypt.Encrypt(Md5.md5(userLogOnBaseEntity.F_UserPassword, 32).ToLower(), userLogOnBaseEntity.F_UserSecretkey).ToLower(), 32).ToLower();
+                    db.Insert(userBaseEntity);
+                    db.Insert(userLogOnBaseEntity);
                 }
                 db.Commit();
             }

@@ -5,15 +5,15 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IUserRepository : IRepositoryBase<UserEntity>
+    public interface IUserRepository : IRepositoryBase<UserBaseEntity>
     {
         void DeleteForm(string keyValue);
-        void SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue);
+        void SubmitForm(UserBaseEntity userBaseEntity, UserLogOnBaseEntity userLogOnBaseEntity, string keyValue);
     }
 }

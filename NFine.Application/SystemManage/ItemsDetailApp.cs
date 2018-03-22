@@ -5,12 +5,12 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using Nice.Common.Extend;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Application.SystemManage
@@ -19,9 +19,9 @@ namespace NFine.Application.SystemManage
     {
         private IItemsDetailRepository service = new ItemsDetailRepository();
 
-        public List<ItemsDetailEntity> GetList(string itemId = "", string keyword = "")
+        public List<ItemsDetailBaseEntity> GetList(string itemId = "", string keyword = "")
         {
-            var expression = ExtLinq.True<ItemsDetailEntity>();
+            var expression = ExtLinq.True<ItemsDetailBaseEntity>();
             if (!string.IsNullOrEmpty(itemId))
             {
                 expression = expression.And(t => t.F_ItemId == itemId);
@@ -33,11 +33,11 @@ namespace NFine.Application.SystemManage
             }
             return service.Queryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
-        public List<ItemsDetailEntity> GetItemList(string enCode)
+        public List<ItemsDetailBaseEntity> GetItemList(string enCode)
         {
             return service.GetItemList(enCode);
         }
-        public ItemsDetailEntity GetForm(string keyValue)
+        public ItemsDetailBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -45,17 +45,17 @@ namespace NFine.Application.SystemManage
         {
             service.Delete(t => t.F_Id == keyValue);
         }
-        public void SubmitForm(ItemsDetailEntity itemsDetailEntity, string keyValue)
+        public void SubmitForm(ItemsDetailBaseEntity itemsDetailBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                itemsDetailEntity.Modify(keyValue);
-                service.Update(itemsDetailEntity);
+                itemsDetailBaseEntity.Modify(keyValue);
+                service.Update(itemsDetailBaseEntity);
             }
             else
             {
-                itemsDetailEntity.Create();
-                service.Insert(itemsDetailEntity);
+                itemsDetailBaseEntity.Create();
+                service.Insert(itemsDetailBaseEntity);
             }
         }
     }

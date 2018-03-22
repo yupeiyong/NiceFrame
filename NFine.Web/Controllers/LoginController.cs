@@ -1,11 +1,9 @@
-﻿using NFine.Domain.Entity.SystemSecurity;
-using NFine.Application.SystemSecurity;
+﻿using NFine.Application.SystemSecurity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NFine.Domain.Entity.SystemManage;
 using NFine.Application.SystemManage;
 using NFine.Code;
 using NFine.Application;
@@ -15,6 +13,8 @@ using Nice.Common.Json;
 using Nice.Common.Net;
 using Nice.Common.Operator;
 using Nice.Common.Security;
+using Nice.Domain.Entity.SystemManage;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Web.Controllers
@@ -35,7 +35,7 @@ namespace NFine.Web.Controllers
         [HttpGet]
         public ActionResult OutLogin()
         {
-            new LogApp().WriteDbLog(new LogEntity
+            new LogApp().WriteDbLog(new LogBaseEntity
             {
                 F_ModuleName = "系统登录",
                 F_Type = DbLogType.Exit.ToString(),
@@ -53,9 +53,9 @@ namespace NFine.Web.Controllers
         [HandlerAjaxOnly]
         public ActionResult CheckLogin(string username, string password, string code)
         {
-            LogEntity logEntity = new LogEntity();
-            logEntity.F_ModuleName = "系统登录";
-            logEntity.F_Type = DbLogType.Login.ToString();
+            LogBaseEntity logBaseEntity = new LogBaseEntity();
+            logBaseEntity.F_ModuleName = "系统登录";
+            logBaseEntity.F_Type = DbLogType.Login.ToString();
             try
             {
                 if (Session["nfine_session_verifycode"].IsEmpty() || Md5.md5(code.ToLower(), 16) != Session["nfine_session_verifycode"].ToString())
@@ -63,21 +63,21 @@ namespace NFine.Web.Controllers
                     throw new Exception("验证码错误，请重新输入");
                 }
 
-                UserEntity userEntity = new UserApp().CheckLogin(username, password);
-                if (userEntity != null)
+                UserBaseEntity userBaseEntity = new UserApp().CheckLogin(username, password);
+                if (userBaseEntity != null)
                 {
                     OperatorModel operatorModel = new OperatorModel();
-                    operatorModel.UserId = userEntity.F_Id;
-                    operatorModel.UserCode = userEntity.F_Account;
-                    operatorModel.UserName = userEntity.F_RealName;
-                    operatorModel.CompanyId = userEntity.F_OrganizeId;
-                    operatorModel.DepartmentId = userEntity.F_DepartmentId;
-                    operatorModel.RoleId = userEntity.F_RoleId;
+                    operatorModel.UserId = userBaseEntity.F_Id;
+                    operatorModel.UserCode = userBaseEntity.F_Account;
+                    operatorModel.UserName = userBaseEntity.F_RealName;
+                    operatorModel.CompanyId = userBaseEntity.F_OrganizeId;
+                    operatorModel.DepartmentId = userBaseEntity.F_DepartmentId;
+                    operatorModel.RoleId = userBaseEntity.F_RoleId;
                     operatorModel.LoginIPAddress = Net.Ip;
                     operatorModel.LoginIPAddressName = Net.GetLocation(operatorModel.LoginIPAddress);
                     operatorModel.LoginTime = DateTime.Now;
                     operatorModel.LoginToken = DesEncrypt.Encrypt(Guid.NewGuid().ToString());
-                    if (userEntity.F_Account == "admin")
+                    if (userBaseEntity.F_Account == "admin")
                     {
                         operatorModel.IsSystem = true;
                     }
@@ -86,21 +86,21 @@ namespace NFine.Web.Controllers
                         operatorModel.IsSystem = false;
                     }
                     OperatorProvider.Provider.AddCurrent(operatorModel);
-                    logEntity.F_Account = userEntity.F_Account;
-                    logEntity.F_NickName = userEntity.F_RealName;
-                    logEntity.F_Result = true;
-                    logEntity.F_Description = "登录成功";
-                    new LogApp().WriteDbLog(logEntity);
+                    logBaseEntity.F_Account = userBaseEntity.F_Account;
+                    logBaseEntity.F_NickName = userBaseEntity.F_RealName;
+                    logBaseEntity.F_Result = true;
+                    logBaseEntity.F_Description = "登录成功";
+                    new LogApp().WriteDbLog(logBaseEntity);
                 }
                 return Content(new AjaxResult { state = ResultType.success.ToString(), message = "登录成功。" }.ToJson());
             }
             catch (Exception ex)
             {
-                logEntity.F_Account = username;
-                logEntity.F_NickName = username;
-                logEntity.F_Result = false;
-                logEntity.F_Description = "登录失败，" + ex.Message;
-                new LogApp().WriteDbLog(logEntity);
+                logBaseEntity.F_Account = username;
+                logBaseEntity.F_NickName = username;
+                logBaseEntity.F_Result = false;
+                logBaseEntity.F_Description = "登录失败，" + ex.Message;
+                new LogApp().WriteDbLog(logBaseEntity);
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
         }

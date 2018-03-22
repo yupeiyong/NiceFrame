@@ -1,8 +1,10 @@
 ﻿using System;
+using Nice.Domain.Infrastructure;
 
-namespace NFine.Domain.Entity.SystemSecurity
+
+namespace Nice.Domain.Entity.SystemSecurity
 {
-    public class DbBackupEntity :IEntity,ICreationAudited, IDeleteAudited, IModificationAudited
+    public class DbBackupBaseEntity :BaseEntity,ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_BackupType { get; set; }

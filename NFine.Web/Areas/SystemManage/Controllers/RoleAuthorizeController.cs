@@ -6,11 +6,11 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Nice.Common.Web.TreeView;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Web.Areas.SystemManage.Controllers
@@ -25,13 +25,13 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();
-            var authorizedata = new List<RoleAuthorizeEntity>();
+            var authorizedata = new List<RoleAuthorizeBaseEntity>();
             if (!string.IsNullOrEmpty(roleId))
             {
                 authorizedata = roleAuthorizeApp.GetList(roleId);
             }
             var treeList = new List<TreeViewModel>();
-            foreach (ModuleEntity item in moduledata)
+            foreach (ModuleBaseEntity item in moduledata)
             {
                 TreeViewModel tree = new TreeViewModel();
                 bool hasChildren = moduledata.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -47,7 +47,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 tree.img = item.F_Icon == "" ? "" : item.F_Icon;
                 treeList.Add(tree);
             }
-            foreach (ModuleButtonEntity item in buttondata)
+            foreach (ModuleButtonBaseEntity item in buttondata)
             {
                 TreeViewModel tree = new TreeViewModel();
                 bool hasChildren = buttondata.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;

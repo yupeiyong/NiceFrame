@@ -1,23 +1,15 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Code;
-using System;
-using Nice.Common;
+﻿using System;
 using Nice.Common.Operator;
 
 
-namespace NFine.Domain
+namespace Nice.Domain.Infrastructure
 {
-    public class IEntity
+    public class BaseEntity
     {
         public void Create()
         {
             var entity = this as ICreationAudited;
-            entity.F_Id = Common.GuId();
+            entity.F_Id = Common.Common.GuId();
             var LoginInfo = OperatorProvider.Provider.GetCurrent();
             if (LoginInfo != null)
             {

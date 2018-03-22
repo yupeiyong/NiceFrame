@@ -76,9 +76,9 @@
       <Project>{f71003e8-a836-48f4-9df6-df9095cebd18}</Project>
       <Name>Nice.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
+    <ProjectReference Include="..\NFine.Domain\Nice.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
-      <Name>NFine.Domain</Name>
+      <Name>Nice.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

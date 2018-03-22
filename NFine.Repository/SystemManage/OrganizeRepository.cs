@@ -5,15 +5,15 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Repository.SystemManage
 {
-    public class OrganizeRepository : RepositoryBase<OrganizeEntity>, IOrganizeRepository
+    public class OrganizeRepository : RepositoryBase<OrganizeBaseEntity>, IOrganizeRepository
     {
 
     }

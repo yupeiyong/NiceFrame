@@ -1,8 +1,10 @@
 ﻿using System;
+using Nice.Domain.Infrastructure;
 
-namespace NFine.Domain.Entity.SystemSecurity
+
+namespace Nice.Domain.Entity.SystemSecurity
 {
-    public class LogEntity : IEntity, ICreationAudited
+    public class LogBaseEntity : BaseEntity, ICreationAudited
     {
         public string F_Id { get; set; }
         public DateTime? F_Date { get; set; }

@@ -5,12 +5,13 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Domain.Entity.SystemManage;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -18,11 +19,11 @@ namespace NFine.Application.SystemManage
     {
         private IModuleRepository service = new ModuleRepository();
 
-        public List<ModuleEntity> GetList()
+        public List<ModuleBaseEntity> GetList()
         {
             return service.Queryable().OrderBy(t => t.F_SortCode).ToList();
         }
-        public ModuleEntity GetForm(string keyValue)
+        public ModuleBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -37,17 +38,17 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(ModuleEntity moduleEntity, string keyValue)
+        public void SubmitForm(ModuleBaseEntity moduleBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                moduleEntity.Modify(keyValue);
-                service.Update(moduleEntity);
+                moduleBaseEntity.Modify(keyValue);
+                service.Update(moduleBaseEntity);
             }
             else
             {
-                moduleEntity.Create();
-                service.Insert(moduleEntity);
+                moduleBaseEntity.Create();
+                service.Insert(moduleBaseEntity);
             }
         }
     }

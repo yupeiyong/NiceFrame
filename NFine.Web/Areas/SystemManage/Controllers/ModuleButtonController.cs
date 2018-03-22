@@ -6,7 +6,6 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,6 +13,7 @@ using Nice.Common.Json;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Common.Web.TreeView;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Web.Areas.SystemManage.Controllers
@@ -28,7 +28,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = moduleButtonApp.GetList(moduleId);
             var treeList = new List<TreeSelectModel>();
-            foreach (ModuleButtonEntity item in data)
+            foreach (ModuleButtonBaseEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
                 treeModel.id = item.F_Id;
@@ -44,7 +44,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = moduleButtonApp.GetList(moduleId);
             var treeList = new List<TreeGridModel>();
-            foreach (ModuleButtonEntity item in data)
+            foreach (ModuleButtonBaseEntity item in data)
             {
                 TreeGridModel treeModel = new TreeGridModel();
                 bool hasChildren = data.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -67,9 +67,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(ModuleButtonEntity moduleButtonEntity, string keyValue)
+        public ActionResult SubmitForm(ModuleButtonBaseEntity moduleButtonBaseEntity, string keyValue)
         {
-            moduleButtonApp.SubmitForm(moduleButtonEntity, keyValue);
+            moduleButtonApp.SubmitForm(moduleButtonBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -92,7 +92,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();
             var treeList = new List<TreeViewModel>();
-            foreach (ModuleEntity item in moduledata)
+            foreach (ModuleBaseEntity item in moduledata)
             {
                 TreeViewModel tree = new TreeViewModel();
                 bool hasChildren = moduledata.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -105,7 +105,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 tree.hasChildren = true;
                 treeList.Add(tree);
             }
-            foreach (ModuleButtonEntity item in buttondata)
+            foreach (ModuleButtonBaseEntity item in buttondata)
             {
                 TreeViewModel tree = new TreeViewModel();
                 bool hasChildren = buttondata.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;

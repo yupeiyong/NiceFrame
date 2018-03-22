@@ -5,40 +5,40 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System.Collections.Generic;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Repository.SystemManage
 {
-    public class RoleRepository : RepositoryBase<RoleEntity>, IRoleRepository
+    public class RoleRepository : RepositoryBase<RoleBaseEntity>, IRoleRepository
     {
         public void DeleteForm(string keyValue)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
-                db.Delete<RoleEntity>(t => t.F_Id == keyValue);
-                db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == keyValue);
+                db.Delete<RoleBaseEntity>(t => t.F_Id == keyValue);
+                db.Delete<RoleAuthorizeBaseEntity>(t => t.F_ObjectId == keyValue);
                 db.Commit();
             }
         }
-        public void SubmitForm(RoleEntity roleEntity, List<RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue)
+        public void SubmitForm(RoleBaseEntity roleBaseEntity, List<RoleAuthorizeBaseEntity> roleAuthorizeEntitys, string keyValue)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
                 if (!string.IsNullOrEmpty(keyValue))
                 {
-                    db.Update(roleEntity);
+                    db.Update(roleBaseEntity);
                 }
                 else
                 {
-                    roleEntity.F_Category = 1;
-                    db.Insert(roleEntity);
+                    roleBaseEntity.F_Category = 1;
+                    db.Insert(roleBaseEntity);
                 }
-                db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == roleEntity.F_Id);
+                db.Delete<RoleAuthorizeBaseEntity>(t => t.F_ObjectId == roleBaseEntity.F_Id);
                 db.Insert(roleAuthorizeEntitys);
                 db.Commit();
             }

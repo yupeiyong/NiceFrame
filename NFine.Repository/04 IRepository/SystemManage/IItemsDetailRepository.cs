@@ -5,15 +5,15 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IItemsDetailRepository : IRepositoryBase<ItemsDetailEntity>
+    public interface IItemsDetailRepository : IRepositoryBase<ItemsDetailBaseEntity>
     {
-        List<ItemsDetailEntity> GetItemList(string enCode);
+        List<ItemsDetailBaseEntity> GetItemList(string enCode);
     }
 }

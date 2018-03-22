@@ -6,7 +6,6 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -15,6 +14,7 @@ using Nice.Common.Web;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Common.Web.TreeView;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Web.Areas.SystemManage.Controllers
@@ -29,7 +29,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = organizeApp.GetList();
             var treeList = new List<TreeSelectModel>();
-            foreach (OrganizeEntity item in data)
+            foreach (OrganizeBaseEntity item in data)
             {
                 TreeSelectModel treeModel = new TreeSelectModel();
                 treeModel.id = item.F_Id;
@@ -46,7 +46,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             var data = organizeApp.GetList();
             var treeList = new List<TreeViewModel>();
-            foreach (OrganizeEntity item in data)
+            foreach (OrganizeBaseEntity item in data)
             {
                 TreeViewModel tree = new TreeViewModel();
                 bool hasChildren = data.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -71,7 +71,7 @@ namespace NFine.Web.Areas.SystemManage.Controllers
                 data = data.TreeWhere(t => t.F_FullName.Contains(keyword));
             }
             var treeList = new List<TreeGridModel>();
-            foreach (OrganizeEntity item in data)
+            foreach (OrganizeBaseEntity item in data)
             {
                 TreeGridModel treeModel = new TreeGridModel();
                 bool hasChildren = data.Count(t => t.F_ParentId == item.F_Id) == 0 ? false : true;
@@ -94,9 +94,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(OrganizeEntity organizeEntity, string keyValue)
+        public ActionResult SubmitForm(OrganizeBaseEntity organizeBaseEntity, string keyValue)
         {
-            organizeApp.SubmitForm(organizeEntity, keyValue);
+            organizeApp.SubmitForm(organizeBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]

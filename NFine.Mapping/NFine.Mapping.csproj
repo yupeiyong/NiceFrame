@@ -64,9 +64,9 @@
     <Compile Include="SystemSecurity\LogMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
+    <ProjectReference Include="..\NFine.Domain\Nice.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
-      <Name>NFine.Domain</Name>
+      <Name>Nice.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,10 @@
 ﻿using System;
+using Nice.Domain.Infrastructure;
 
-namespace NFine.Domain.Entity.SystemManage
+
+namespace Nice.Domain.Entity.SystemManage
 {
-    public class RoleAuthorizeEntity : IEntity, ICreationAudited
+    public class RoleAuthorizeBaseEntity : BaseEntity, ICreationAudited
     {
         public string F_Id { get; set; }
         public int? F_ItemType { get; set; }

@@ -4,12 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Domain.Entity.SystemManage;
+
 using System.Data.Entity.ModelConfiguration;
+using Nice.Domain.Entity.SystemManage;
+
 
 namespace NFine.Mapping.SystemManage
 {
-    public class UserLogOnMap : EntityTypeConfiguration<UserLogOnEntity>
+    public class UserLogOnMap : EntityTypeConfiguration<UserLogOnBaseEntity>
     {
         public UserLogOnMap()
         {

@@ -1,21 +1,17 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
+﻿using System;
+using Nice.Domain.Infrastructure;
 
-namespace NFine.Domain.Entity.SystemManage
+
+namespace Nice.Domain.Entity.SystemManage
 {
-    public class AreaEntity : IEntity, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class ItemsBaseEntity : BaseEntity, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_ParentId { get; set; }
-        public int? F_Layers { get; set; }
         public string F_EnCode { get; set; }
         public string F_FullName { get; set; }
-        public string F_SimpleSpelling { get; set; }
+        public bool? F_IsTree { get; set; }
+        public int? F_Layers { get; set; }
         public int? F_SortCode { get; set; }
         public bool? F_DeleteMark { get; set; }
         public bool? F_EnabledMark { get; set; }

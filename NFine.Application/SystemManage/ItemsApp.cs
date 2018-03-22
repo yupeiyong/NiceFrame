@@ -4,12 +4,14 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Domain.Entity.SystemManage;
+
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Domain.Entity.SystemManage;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -17,11 +19,11 @@ namespace NFine.Application.SystemManage
     {
         private IItemsRepository service = new ItemsRepository();
 
-        public List<ItemsEntity> GetList()
+        public List<ItemsBaseEntity> GetList()
         {
             return service.Queryable().ToList();
         }
-        public ItemsEntity GetForm(string keyValue)
+        public ItemsBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -36,17 +38,17 @@ namespace NFine.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
-        public void SubmitForm(ItemsEntity itemsEntity, string keyValue)
+        public void SubmitForm(ItemsBaseEntity itemsBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                itemsEntity.Modify(keyValue);
-                service.Update(itemsEntity);
+                itemsBaseEntity.Modify(keyValue);
+                service.Update(itemsBaseEntity);
             }
             else
             {
-                itemsEntity.Create();
-                service.Insert(itemsEntity);
+                itemsBaseEntity.Create();
+                service.Insert(itemsBaseEntity);
             }
         }
     }

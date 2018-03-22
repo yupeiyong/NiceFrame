@@ -6,12 +6,12 @@
 *********************************************************************************/
 using NFine.Application.SystemManage;
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Nice.Common.Json;
 using Nice.Common.Web;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Web.Areas.SystemManage.Controllers
@@ -44,9 +44,9 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(UserEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        public ActionResult SubmitForm(UserBaseEntity userBaseEntity, UserLogOnBaseEntity userLogOnBaseEntity, string keyValue)
         {
-            userApp.SubmitForm(userEntity, userLogOnEntity, keyValue);
+            userApp.SubmitForm(userBaseEntity, userLogOnBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -78,10 +78,10 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DisabledAccount(string keyValue)
         {
-            UserEntity userEntity = new UserEntity();
-            userEntity.F_Id = keyValue;
-            userEntity.F_EnabledMark = false;
-            userApp.UpdateForm(userEntity);
+            UserBaseEntity userBaseEntity = new UserBaseEntity();
+            userBaseEntity.F_Id = keyValue;
+            userBaseEntity.F_EnabledMark = false;
+            userApp.UpdateForm(userBaseEntity);
             return Success("账户禁用成功。");
         }
         [HttpPost]
@@ -90,10 +90,10 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EnabledAccount(string keyValue)
         {
-            UserEntity userEntity = new UserEntity();
-            userEntity.F_Id = keyValue;
-            userEntity.F_EnabledMark = true;
-            userApp.UpdateForm(userEntity);
+            UserBaseEntity userBaseEntity = new UserBaseEntity();
+            userBaseEntity.F_Id = keyValue;
+            userBaseEntity.F_EnabledMark = true;
+            userApp.UpdateForm(userBaseEntity);
             return Success("账户启用成功。");
         }
 

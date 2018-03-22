@@ -5,15 +5,15 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemSecurity;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Domain.IRepository.SystemSecurity
 {
-    public interface IDbBackupRepository : IRepositoryBase<DbBackupEntity>
+    public interface IDbBackupRepository : IRepositoryBase<DbBackupBaseEntity>
     {
         void DeleteForm(string keyValue);
-        void ExecuteDbBackup(DbBackupEntity dbBackupEntity);
+        void ExecuteDbBackup(DbBackupBaseEntity dbBackupBaseEntity);
     }
 }

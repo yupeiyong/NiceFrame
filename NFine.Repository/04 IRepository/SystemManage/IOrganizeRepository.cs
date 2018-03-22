@@ -5,13 +5,13 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemManage;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Domain.IRepository.SystemManage
 {
-    public interface IOrganizeRepository : IRepositoryBase<OrganizeEntity>
+    public interface IOrganizeRepository : IRepositoryBase<OrganizeBaseEntity>
     {
     }
 }

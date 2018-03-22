@@ -5,15 +5,15 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 
-using NFine.Domain.Entity.SystemSecurity;
 using NFine.Domain.IRepository.SystemSecurity;
 using NFine.Repository.SystemSecurity;
 using Nice.Data.Repository;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Repository.SystemSecurity
 {
-    public class FilterIPRepository : RepositoryBase<FilterIPEntity>, IFilterIPRepository
+    public class FilterIPRepository : RepositoryBase<FilterIpBaseEntity>, IFilterIPRepository
     {
        
     }

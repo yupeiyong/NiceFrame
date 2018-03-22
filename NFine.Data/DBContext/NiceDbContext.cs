@@ -6,8 +6,9 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
-using NFine.Domain;
 using NFine.Mapping.SystemManage;
+using Nice.Domain.Infrastructure;
+
 
 namespace Nice.Data.DBContext
 {
@@ -38,10 +39,10 @@ namespace Nice.Data.DBContext
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(18, 8));
 
             var modelTypes = new List<Type>();
-            var assemb= typeof(IEntity).Assembly;
+            var assemb= typeof(BaseEntity).Assembly;
             try
             {
-                var types = assemb.GetTypes().Where(t => t.IsClass && t.IsPublic && !t.IsAbstract && (!t.IsNested && !t.IsGenericType) && t.BaseType != null && t.BaseType == typeof(IEntity)).ToList();
+                var types = assemb.GetTypes().Where(t => t.IsClass && t.IsPublic && !t.IsAbstract && (!t.IsNested && !t.IsGenericType) && t.BaseType != null && t.BaseType == typeof(BaseEntity)).ToList();
                 if (types.Count > 0)
                     modelTypes.AddRange(types);
             }

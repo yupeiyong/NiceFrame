@@ -6,10 +6,10 @@
 *********************************************************************************/
 using NFine.Application.SystemSecurity;
 using NFine.Code;
-using NFine.Domain.Entity.SystemSecurity;
 using System.Web.Mvc;
 using Nice.Common.File;
 using Nice.Common.Json;
+using Nice.Domain.Entity.SystemSecurity;
 
 
 namespace NFine.Web.Areas.SystemSecurity.Controllers
@@ -28,11 +28,11 @@ namespace NFine.Web.Areas.SystemSecurity.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(DbBackupEntity dbBackupEntity)
+        public ActionResult SubmitForm(DbBackupBaseEntity dbBackupBaseEntity)
         {
-            dbBackupEntity.F_FilePath = Server.MapPath("~/Resource/DbBackup/" + dbBackupEntity.F_FileName + ".bak");
-            dbBackupEntity.F_FileName = dbBackupEntity.F_FileName + ".bak";
-            dbBackupApp.SubmitForm(dbBackupEntity);
+            dbBackupBaseEntity.F_FilePath = Server.MapPath("~/Resource/DbBackup/" + dbBackupBaseEntity.F_FileName + ".bak");
+            dbBackupBaseEntity.F_FileName = dbBackupBaseEntity.F_FileName + ".bak";
+            dbBackupApp.SubmitForm(dbBackupBaseEntity);
             return Success("操作成功。");
         }
         [HttpPost]

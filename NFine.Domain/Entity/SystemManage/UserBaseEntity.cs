@@ -1,8 +1,10 @@
 ﻿using System;
+using Nice.Domain.Infrastructure;
 
-namespace NFine.Domain.Entity.SystemManage
+
+namespace Nice.Domain.Entity.SystemManage
 {
-    public class UserEntity : IEntity, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class UserBaseEntity : BaseEntity, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public string F_Account { get; set; }

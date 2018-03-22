@@ -1,14 +1,10 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
+﻿using System;
+using Nice.Domain.Infrastructure;
 
-namespace NFine.Domain.Entity.SystemSecurity
+
+namespace Nice.Domain.Entity.SystemSecurity
 {
-    public class FilterIPEntity : IEntity, ICreationAudited, IDeleteAudited, IModificationAudited
+    public class FilterIpBaseEntity : BaseEntity, ICreationAudited, IDeleteAudited, IModificationAudited
     {
         public string F_Id { get; set; }
         public bool? F_Type { get; set; }

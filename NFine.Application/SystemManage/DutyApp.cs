@@ -5,12 +5,12 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
-using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using Nice.Common.Extend;
+using Nice.Domain.Entity.SystemManage;
 
 
 namespace NFine.Application.SystemManage
@@ -19,9 +19,9 @@ namespace NFine.Application.SystemManage
     {
         private IRoleRepository service = new RoleRepository();
 
-        public List<RoleEntity> GetList(string keyword = "")
+        public List<RoleBaseEntity> GetList(string keyword = "")
         {
-            var expression = ExtLinq.True<RoleEntity>();
+            var expression = ExtLinq.True<RoleBaseEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_FullName.Contains(keyword));
@@ -30,7 +30,7 @@ namespace NFine.Application.SystemManage
             expression = expression.And(t => t.F_Category == 2);
             return service.Queryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
-        public RoleEntity GetForm(string keyValue)
+        public RoleBaseEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);
         }
@@ -38,18 +38,18 @@ namespace NFine.Application.SystemManage
         {
             service.Delete(t => t.F_Id == keyValue);
         }
-        public void SubmitForm(RoleEntity roleEntity, string keyValue)
+        public void SubmitForm(RoleBaseEntity roleBaseEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                roleEntity.Modify(keyValue);
-                service.Update(roleEntity);
+                roleBaseEntity.Modify(keyValue);
+                service.Update(roleBaseEntity);
             }
             else
             {
-                roleEntity.Create();
-                roleEntity.F_Category = 2;
-                service.Insert(roleEntity);
+                roleBaseEntity.Create();
+                roleBaseEntity.F_Category = 2;
+                service.Insert(roleBaseEntity);
             }
         }
     }
