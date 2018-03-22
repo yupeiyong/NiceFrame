@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Common.Web.TreeView;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -14,13 +14,13 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class ModuleButtonController : Nice.WebPc.Handler.ControllerBase
     {
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
+        private ModuleService _moduleService = new ModuleService();
+        private ModuleButtonService _moduleButtonService = new ModuleButtonService();
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string moduleId)
         {
-            var data = moduleButtonApp.GetList(moduleId);
+            var data = _moduleButtonService.GetList(moduleId);
             var treeList = new List<TreeSelectModel>();
             foreach (ModuleButtonBaseEntity item in data)
             {
@@ -36,7 +36,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetTreeGridJson(string moduleId)
         {
-            var data = moduleButtonApp.GetList(moduleId);
+            var data = _moduleButtonService.GetList(moduleId);
             var treeList = new List<TreeGridModel>();
             foreach (ModuleButtonBaseEntity item in data)
             {
@@ -55,7 +55,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
-            var data = moduleButtonApp.GetForm(keyValue);
+            var data = _moduleButtonService.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -63,7 +63,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ModuleButtonBaseEntity moduleButtonBaseEntity, string keyValue)
         {
-            moduleButtonApp.SubmitForm(moduleButtonBaseEntity, keyValue);
+            _moduleButtonService.SubmitForm(moduleButtonBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -71,7 +71,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            moduleButtonApp.DeleteForm(keyValue);
+            _moduleButtonService.DeleteForm(keyValue);
             return Success("删除成功。");
         }
         [HttpGet]
@@ -83,8 +83,8 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetCloneButtonTreeJson()
         {
-            var moduledata = moduleApp.GetList();
-            var buttondata = moduleButtonApp.GetList();
+            var moduledata = _moduleService.GetList();
+            var buttondata = _moduleButtonService.GetList();
             var treeList = new List<TreeViewModel>();
             foreach (ModuleBaseEntity item in moduledata)
             {
@@ -130,7 +130,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult SubmitCloneButton(string moduleId, string Ids)
         {
-            moduleButtonApp.SubmitCloneButton(moduleId, Ids);
+            _moduleButtonService.SubmitCloneButton(moduleId, Ids);
             return Success("克隆成功。");
         }
     }

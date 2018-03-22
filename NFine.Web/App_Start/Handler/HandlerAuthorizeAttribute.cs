@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Operator;
 using Nice.Common.Web;
+using Nice.Service.SystemManage;
 
 
 namespace Nice.WebPc.Handler
@@ -41,7 +41,7 @@ namespace Nice.WebPc.Handler
             var roleId = operatorProvider.RoleId;
             var moduleId = WebHelper.GetCookie("nfine_currentmoduleid");
             var action = HttpContext.Current.Request.ServerVariables["SCRIPT_NAME"].ToString();
-            return new RoleAuthorizeApp().ActionValidate(roleId, moduleId, action);
+            return new RoleAuthorizeService().ActionValidate(roleId, moduleId, action);
         }
     }
 }

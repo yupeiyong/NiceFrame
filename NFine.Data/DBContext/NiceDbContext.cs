@@ -6,8 +6,8 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Reflection;
-using NFine.Mapping.SystemManage;
 using Nice.Domain.Infrastructure;
+using Nice.Mapping.SystemManage;
 
 
 namespace Nice.Data.DBContext

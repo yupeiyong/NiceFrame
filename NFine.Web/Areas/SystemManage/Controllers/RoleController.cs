@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -9,23 +9,23 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class RoleController : Nice.WebPc.Handler.ControllerBase
     {
-        private RoleApp roleApp = new RoleApp();
-        private RoleAuthorizeApp roleAuthorizeApp = new RoleAuthorizeApp();
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
+        private RoleService _roleService = new RoleService();
+        private RoleAuthorizeService _roleAuthorizeService = new RoleAuthorizeService();
+        private ModuleService _moduleService = new ModuleService();
+        private ModuleButtonService _moduleButtonService = new ModuleButtonService();
 
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetGridJson(string keyword)
         {
-            var data = roleApp.GetList(keyword);
+            var data = _roleService.GetList(keyword);
             return Content(data.ToJson());
         }
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
-            var data = roleApp.GetForm(keyValue);
+            var data = _roleService.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -33,7 +33,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(RoleBaseEntity roleBaseEntity, string permissionIds, string keyValue)
         {
-            roleApp.SubmitForm(roleBaseEntity, permissionIds.Split(','), keyValue);
+            _roleService.SubmitForm(roleBaseEntity, permissionIds.Split(','), keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -42,7 +42,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            roleApp.DeleteForm(keyValue);
+            _roleService.DeleteForm(keyValue);
             return Success("删除成功。");
         }
     }

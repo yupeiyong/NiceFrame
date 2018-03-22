@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Common.Web;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -14,13 +14,13 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class AreaController : Nice.WebPc.Handler.ControllerBase
     {
-        private AreaApp areaApp = new AreaApp();
+        private AreaService _areaService = new AreaService();
 
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson()
         {
-            var data = areaApp.GetList();
+            var data = _areaService.GetList();
             var treeList = new List<TreeSelectModel>();
             foreach (AreaBaseEntity item in data)
             {
@@ -36,7 +36,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetTreeGridJson(string keyword)
         {
-            var data = areaApp.GetList();
+            var data = _areaService.GetList();
             var treeList = new List<TreeGridModel>();
             foreach (AreaBaseEntity item in data)
             {
@@ -60,7 +60,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
-            var data = areaApp.GetForm(keyValue);
+            var data = _areaService.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -68,7 +68,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(AreaBaseEntity areaBaseEntity, string keyValue)
         {
-            areaApp.SubmitForm(areaBaseEntity, keyValue);
+            _areaService.SubmitForm(areaBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -77,7 +77,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            areaApp.DeleteForm(keyValue);
+            _areaService.DeleteForm(keyValue);
             return Success("删除成功。");
         }
     }

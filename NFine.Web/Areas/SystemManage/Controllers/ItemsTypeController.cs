@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Common.Web.TreeView;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -14,13 +14,13 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class ItemsTypeController : Nice.WebPc.Handler.ControllerBase
     {
-        private ItemsApp itemsApp = new ItemsApp();
+        private ItemsService _itemsService = new ItemsService();
 
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson()
         {
-            var data = itemsApp.GetList();
+            var data = _itemsService.GetList();
             var treeList = new List<TreeSelectModel>();
             foreach (ItemsBaseEntity item in data)
             {
@@ -36,7 +36,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetTreeJson()
         {
-            var data = itemsApp.GetList();
+            var data = _itemsService.GetList();
             var treeList = new List<TreeViewModel>();
             foreach (ItemsBaseEntity item in data)
             {
@@ -57,7 +57,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetTreeGridJson()
         {
-            var data = itemsApp.GetList();
+            var data = _itemsService.GetList();
             var treeList = new List<TreeGridModel>();
             foreach (ItemsBaseEntity item in data)
             {
@@ -76,7 +76,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
-            var data = itemsApp.GetForm(keyValue);
+            var data = _itemsService.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -84,7 +84,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ItemsBaseEntity itemsBaseEntity, string keyValue)
         {
-            itemsApp.SubmitForm(itemsBaseEntity, keyValue);
+            _itemsService.SubmitForm(itemsBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -92,7 +92,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            itemsApp.DeleteForm(keyValue);
+            _itemsService.DeleteForm(keyValue);
             return Success("删除成功。");
         }
     }

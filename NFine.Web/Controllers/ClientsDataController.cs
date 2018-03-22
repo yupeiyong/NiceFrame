@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Extend;
 using Nice.Common.Json;
 using Nice.Common.Operator;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -34,9 +34,9 @@ namespace Nice.WebPc.Controllers
         }
         private object GetDataItemList()
         {
-            var itemdata = new ItemsDetailApp().GetList();
+            var itemdata = new ItemsDetailService().GetList();
             Dictionary<string, object> dictionaryItem = new Dictionary<string, object>();
-            foreach (var item in new ItemsApp().GetList())
+            foreach (var item in new ItemsService().GetList())
             {
                 var dataItemList = itemdata.FindAll(t => t.F_ItemId.Equals(item.F_Id));
                 Dictionary<string, string> dictionaryItemList = new Dictionary<string, string>();
@@ -50,8 +50,8 @@ namespace Nice.WebPc.Controllers
         }
         private object GetOrganizeList()
         {
-            OrganizeApp organizeApp = new OrganizeApp();
-            var data = organizeApp.GetList();
+            OrganizeService _organizeService = new OrganizeService();
+            var data = _organizeService.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (OrganizeBaseEntity item in data)
             {
@@ -66,8 +66,8 @@ namespace Nice.WebPc.Controllers
         }
         private object GetRoleList()
         {
-            RoleApp roleApp = new RoleApp();
-            var data = roleApp.GetList();
+            RoleService _roleService = new RoleService();
+            var data = _roleService.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (RoleBaseEntity item in data)
             {
@@ -82,8 +82,8 @@ namespace Nice.WebPc.Controllers
         }
         private object GetDutyList()
         {
-            DutyApp dutyApp = new DutyApp();
-            var data = dutyApp.GetList();
+            DutyService _dutyService = new DutyService();
+            var data = _dutyService.GetList();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (RoleBaseEntity item in data)
             {
@@ -99,7 +99,7 @@ namespace Nice.WebPc.Controllers
         private object GetMenuList()
         {
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
-            return ToMenuJson(new RoleAuthorizeApp().GetMenuList(roleId), "0");
+            return ToMenuJson(new RoleAuthorizeService().GetMenuList(roleId), "0");
         }
         private string ToMenuJson(List<ModuleBaseEntity> data, string parentId)
         {
@@ -122,7 +122,7 @@ namespace Nice.WebPc.Controllers
         private object GetMenuButtonList()
         {
             var roleId = OperatorProvider.Provider.GetCurrent().RoleId;
-            var data = new RoleAuthorizeApp().GetButtonList(roleId);
+            var data = new RoleAuthorizeService().GetButtonList(roleId);
             var dataModuleId = data.Distinct(new ExtList<ModuleButtonBaseEntity>("F_ModuleId"));
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (ModuleButtonBaseEntity item in dataModuleId)

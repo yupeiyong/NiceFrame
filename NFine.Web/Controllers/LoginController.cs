@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using NFine.Application;
-using NFine.Application.SystemManage;
-using NFine.Application.SystemSecurity;
 using NFine.Code;
 using Nice.Common;
 using Nice.Common.Extend;
@@ -12,6 +9,9 @@ using Nice.Common.Operator;
 using Nice.Common.Security;
 using Nice.Domain.Entity.SystemManage;
 using Nice.Domain.Entity.SystemSecurity;
+using Nice.Service.Infrastructure;
+using Nice.Service.SystemManage;
+using Nice.Service.SystemSecurity;
 using Nice.WebPc.Handler;
 
 
@@ -33,7 +33,7 @@ namespace Nice.WebPc.Controllers
         [HttpGet]
         public ActionResult OutLogin()
         {
-            new LogApp().WriteDbLog(new LogBaseEntity
+            new LogService().WriteDbLog(new LogBaseEntity
             {
                 F_ModuleName = "系统登录",
                 F_Type = DbLogType.Exit.ToString(),
@@ -61,7 +61,7 @@ namespace Nice.WebPc.Controllers
                     throw new Exception("验证码错误，请重新输入");
                 }
 
-                UserBaseEntity userBaseEntity = new UserApp().CheckLogin(username, password);
+                UserBaseEntity userBaseEntity = new UserService().CheckLogin(username, password);
                 if (userBaseEntity != null)
                 {
                     OperatorModel operatorModel = new OperatorModel();
@@ -88,7 +88,7 @@ namespace Nice.WebPc.Controllers
                     logBaseEntity.F_NickName = userBaseEntity.F_RealName;
                     logBaseEntity.F_Result = true;
                     logBaseEntity.F_Description = "登录成功";
-                    new LogApp().WriteDbLog(logBaseEntity);
+                    new LogService().WriteDbLog(logBaseEntity);
                 }
                 return Content(new AjaxResult { state = ResultType.success.ToString(), message = "登录成功。" }.ToJson());
             }
@@ -98,7 +98,7 @@ namespace Nice.WebPc.Controllers
                 logBaseEntity.F_NickName = username;
                 logBaseEntity.F_Result = false;
                 logBaseEntity.F_Description = "登录失败，" + ex.Message;
-                new LogApp().WriteDbLog(logBaseEntity);
+                new LogService().WriteDbLog(logBaseEntity);
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
         }

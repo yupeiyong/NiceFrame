@@ -1,19 +1,11 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Code;
-using NFine.Domain.IRepository.SystemSecurity;
-using NFine.Repository.SystemSecurity;
-using Nice.Common.File;
+﻿using Nice.Common.File;
 using Nice.Data.Extensions;
 using Nice.Data.Repository;
 using Nice.Domain.Entity.SystemSecurity;
+using Nice.Repository.IRepository.SystemSecurity;
 
 
-namespace NFine.Repository.SystemSecurity
+namespace Nice.Repository.SystemSecurity
 {
     public class DbBackupRepository : RepositoryBase<DbBackupBaseEntity>, IDbBackupRepository
     {

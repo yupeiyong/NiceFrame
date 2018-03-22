@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Common.Web;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -10,8 +10,8 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class UserController : Handler.ControllerBase
     {
-        private UserApp userApp = new UserApp();
-        private UserLogOnApp userLogOnApp = new UserLogOnApp();
+        private UserService _userService = new UserService();
+        private UserLogOnService _userLogOnService = new UserLogOnService();
 
         [HttpGet]
         [HandlerAjaxOnly]
@@ -19,7 +19,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         {
             var data = new
             {
-                rows = userApp.GetList(pagination, keyword),
+                rows = _userService.GetList(pagination, keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -30,7 +30,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
-            var data = userApp.GetForm(keyValue);
+            var data = _userService.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -38,7 +38,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(UserBaseEntity userBaseEntity, UserLogOnBaseEntity userLogOnBaseEntity, string keyValue)
         {
-            userApp.SubmitForm(userBaseEntity, userLogOnBaseEntity, keyValue);
+            _userService.SubmitForm(userBaseEntity, userLogOnBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -47,7 +47,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            userApp.DeleteForm(keyValue);
+            _userService.DeleteForm(keyValue);
             return Success("删除成功。");
         }
         [HttpGet]
@@ -61,7 +61,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitRevisePassword(string userPassword, string keyValue)
         {
-            userLogOnApp.RevisePassword(userPassword, keyValue);
+            _userLogOnService.RevisePassword(userPassword, keyValue);
             return Success("重置密码成功。");
         }
         [HttpPost]
@@ -73,7 +73,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
             UserBaseEntity userBaseEntity = new UserBaseEntity();
             userBaseEntity.F_Id = keyValue;
             userBaseEntity.F_EnabledMark = false;
-            userApp.UpdateForm(userBaseEntity);
+            _userService.UpdateForm(userBaseEntity);
             return Success("账户禁用成功。");
         }
         [HttpPost]
@@ -85,7 +85,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
             UserBaseEntity userBaseEntity = new UserBaseEntity();
             userBaseEntity.F_Id = keyValue;
             userBaseEntity.F_EnabledMark = true;
-            userApp.UpdateForm(userBaseEntity);
+            _userService.UpdateForm(userBaseEntity);
             return Success("账户启用成功。");
         }
 

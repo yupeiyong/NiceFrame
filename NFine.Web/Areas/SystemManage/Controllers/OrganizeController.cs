@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Common.Web;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Common.Web.TreeView;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 using Nice.WebPc.Handler;
 
 
@@ -15,13 +15,13 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class OrganizeController : Nice.WebPc.Handler.ControllerBase
     {
-        private OrganizeApp organizeApp = new OrganizeApp();
+        private OrganizeService _organizeService = new OrganizeService();
 
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson()
         {
-            var data = organizeApp.GetList();
+            var data = _organizeService.GetList();
             var treeList = new List<TreeSelectModel>();
             foreach (OrganizeBaseEntity item in data)
             {
@@ -38,7 +38,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetTreeJson()
         {
-            var data = organizeApp.GetList();
+            var data = _organizeService.GetList();
             var treeList = new List<TreeViewModel>();
             foreach (OrganizeBaseEntity item in data)
             {
@@ -59,7 +59,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetTreeGridJson(string keyword)
         {
-            var data = organizeApp.GetList();
+            var data = _organizeService.GetList();
             if (!string.IsNullOrEmpty(keyword))
             {
                 data = data.TreeWhere(t => t.F_FullName.Contains(keyword));
@@ -82,7 +82,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
-            var data = organizeApp.GetForm(keyValue);
+            var data = _organizeService.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -90,7 +90,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(OrganizeBaseEntity organizeBaseEntity, string keyValue)
         {
-            organizeApp.SubmitForm(organizeBaseEntity, keyValue);
+            _organizeService.SubmitForm(organizeBaseEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
@@ -99,7 +99,7 @@ namespace Nice.WebPc.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            organizeApp.DeleteForm(keyValue);
+            _organizeService.DeleteForm(keyValue);
             return Success("删除成功。");
         }
     }

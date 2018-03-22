@@ -420,9 +420,9 @@
     <Content Include="Configs\database.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NFine.Application\NFine.Application.csproj">
+    <ProjectReference Include="..\NFine.Application\Nice.Service.csproj">
       <Project>{f2035ee2-b73d-4fb8-a433-cab465de6a2a}</Project>
-      <Name>NFine.Application</Name>
+      <Name>Nice.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\NFine.Code\Nice.Common.csproj">
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>

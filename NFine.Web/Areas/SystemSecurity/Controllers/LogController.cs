@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using NFine.Application.SystemSecurity;
 using Nice.Common.Json;
 using Nice.Common.Web;
+using Nice.Service.SystemSecurity;
 using Nice.WebPc.Handler;
 
 
@@ -9,7 +9,7 @@ namespace Nice.WebPc.Areas.SystemSecurity.Controllers
 {
     public class LogController : Nice.WebPc.Handler.ControllerBase
     {
-        private LogApp logApp = new LogApp();
+        private LogService _logService = new LogService();
 
         [HttpGet]
         public ActionResult RemoveLog()
@@ -22,7 +22,7 @@ namespace Nice.WebPc.Areas.SystemSecurity.Controllers
         {
             var data = new
             {
-                rows = logApp.GetList(pagination, queryJson),
+                rows = _logService.GetList(pagination, queryJson),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -35,7 +35,7 @@ namespace Nice.WebPc.Areas.SystemSecurity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitRemoveLog(string keepTime)
         {
-            logApp.RemoveLog(keepTime);
+            _logService.RemoveLog(keepTime);
             return Success("清空成功。");
         }
     }

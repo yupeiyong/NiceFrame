@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
 using Nice.Common.Web.TreeView;
 using Nice.Domain.Entity.SystemManage;
+using Nice.Service.SystemManage;
 
 
 namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
     public class RoleAuthorizeController : Nice.WebPc.Handler.ControllerBase
     {
-        private RoleAuthorizeApp roleAuthorizeApp = new RoleAuthorizeApp();
-        private ModuleApp moduleApp = new ModuleApp();
-        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
+        private RoleAuthorizeService _roleAuthorizeService = new RoleAuthorizeService();
+        private ModuleService _moduleService = new ModuleService();
+        private ModuleButtonService _moduleButtonService = new ModuleButtonService();
 
         public ActionResult GetPermissionTree(string roleId)
         {
-            var moduledata = moduleApp.GetList();
-            var buttondata = moduleButtonApp.GetList();
+            var moduledata = _moduleService.GetList();
+            var buttondata = _moduleButtonService.GetList();
             var authorizedata = new List<RoleAuthorizeBaseEntity>();
             if (!string.IsNullOrEmpty(roleId))
             {
-                authorizedata = roleAuthorizeApp.GetList(roleId);
+                authorizedata = _roleAuthorizeService.GetList(roleId);
             }
             var treeList = new List<TreeViewModel>();
             foreach (ModuleBaseEntity item in moduledata)
