@@ -1,13 +1,9 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using NFine.Code;
 
-namespace NFine.Code
+
+namespace Nice.Common.Web.TreeGrid
 {
     public static class TreeGrid
     {
@@ -22,9 +18,9 @@ namespace NFine.Code
         private static string TreeGridJson(List<TreeGridModel> data, int index, string parentId)
         {
             StringBuilder sb = new StringBuilder();
-            var ChildNodeList = data.FindAll(t => t.parentId == parentId);
-            if (ChildNodeList.Count > 0) { index++; }
-            foreach (TreeGridModel entity in ChildNodeList)
+            var childNodeList = data.FindAll(t => t.parentId == parentId);
+            if (childNodeList.Count > 0) { index++; }
+            foreach (TreeGridModel entity in childNodeList)
             {
                 string strJson = entity.entityJson;
                 strJson = strJson.Insert(1, "\"loaded\":" + (entity.loaded == true ? false : true).ToString().ToLower() + ",");

@@ -1,15 +1,10 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
+﻿using System;
 using System.IO;
 using System.Threading;
 using System.Web;
 
-namespace NFine.Code
+
+namespace Nice.Common.File
 {
     public class FileDownHelper
     {
@@ -26,7 +21,7 @@ namespace NFine.Code
         public static bool FileExists(string FileName)
         {
             string destFileName = FileName;
-            if (File.Exists(destFileName))
+            if (System.IO.File.Exists(destFileName))
             {
                 return true;
             }
@@ -38,7 +33,7 @@ namespace NFine.Code
         public static void DownLoadold(string FileName, string name)
         {
             string destFileName = FileName;
-            if (File.Exists(destFileName))
+            if (System.IO.File.Exists(destFileName))
             {
                 FileInfo fi = new FileInfo(destFileName);
                 HttpContext.Current.Response.Clear();

@@ -1,13 +1,9 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System.Configuration;
+﻿using System.Configuration;
 using System.Web;
+using Nice.Common.Security;
 
-namespace NFine.Code
+
+namespace Nice.Common
 {
     public sealed class Licence
     {
@@ -24,11 +20,11 @@ namespace NFine.Code
         }
         public static string GetLicence()
         {
-            var licence = Configs.GetValue("LicenceKey");
+            var licence = Nice.Common.Configs.Configs.GetValue("LicenceKey");
             if (string.IsNullOrEmpty(licence))
             {
                 licence = Common.GuId();
-                Configs.SetValue("LicenceKey", licence);
+                Nice.Common.Configs.Configs.SetValue("LicenceKey", licence);
             }
             return Md5.md5(licence, 32);
         }

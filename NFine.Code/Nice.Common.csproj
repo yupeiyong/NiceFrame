@@ -7,8 +7,8 @@
     <ProjectGuid>{DB19CE03-C307-43FE-A209-08AA4AE10E21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NFine.Code</RootNamespace>
-    <AssemblyName>NFine.Code</AssemblyName>
+    <RootNamespace>Nice.Common</RootNamespace>
+    <AssemblyName>Nice.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -105,6 +105,7 @@
     <Compile Include="Serialize.cs" />
     <Compile Include="Validate\Validate.cs" />
     <Compile Include="VerifyCode.cs" />
+    <Compile Include="Web\AjaxResult - 复制.cs" />
     <Compile Include="Web\AjaxResult.cs" />
     <Compile Include="Web\TreeQuery.cs" />
     <Compile Include="Web\TreeGrid\TreeGrid.cs" />

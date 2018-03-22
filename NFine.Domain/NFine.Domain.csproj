@@ -68,9 +68,9 @@
     <Compile Include="03 Entity\SystemManage\UserEntity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NFine.Code\NFine.Code.csproj">
+    <ProjectReference Include="..\NFine.Code\Nice.Common.csproj">
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
-      <Name>NFine.Code</Name>
+      <Name>Nice.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,16 +1,11 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
+﻿using System;
 using System.Data;
 using System.IO;
 using System.Text;
 using System.Web;
 
-namespace NFine.Code
+
+namespace Nice.Common.File
 {
     public class FileHelper
     {
@@ -33,7 +28,7 @@ namespace NFine.Code
         /// <param name="filePath">文件的绝对路径</param>        
         public static bool IsExistFile(string filePath)
         {
-            return File.Exists(filePath);
+            return System.IO.File.Exists(filePath);
         }
         #endregion
 
@@ -237,9 +232,9 @@ namespace NFine.Code
         /// <param name="file">要删除的文件路径和名称</param>
         public static void DeleteFile(string file)
         {
-            if (File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + file))
+            if (System.IO.File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + file))
             {
-                File.Delete(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + file);
+                System.IO.File.Delete(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + file);
             }
         }
         #endregion
@@ -288,8 +283,8 @@ namespace NFine.Code
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-            if (File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1))
-                File.Move(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1, System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir2);
+            if (System.IO.File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1))
+                System.IO.File.Move(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1, System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir2);
         }
         #endregion
 
@@ -303,9 +298,9 @@ namespace NFine.Code
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-            if (File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1))
+            if (System.IO.File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1))
             {
-                File.Copy(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1, System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir2, true);
+                System.IO.File.Copy(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1, System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir2, true);
             }
         }
         #endregion
@@ -350,7 +345,7 @@ namespace NFine.Code
                     for (int i = 0; i < files.Length; i++)
                     {
                         DataRow row = table.NewRow();
-                        DateTime creationTime = File.GetCreationTime(files[i]);
+                        DateTime creationTime = System.IO.File.GetCreationTime(files[i]);
                         string fileName = Path.GetFileName(files[i]);
                         row["filename"] = fileName;
                         row["createtime"] = creationTime;
@@ -389,7 +384,7 @@ namespace NFine.Code
             {
                 foreach (string s in files)
                 {
-                    File.Copy(s, varToDirectory + s.Substring(s.LastIndexOf("\\")), true);
+                    System.IO.File.Copy(s, varToDirectory + s.Substring(s.LastIndexOf("\\")), true);
                 }
             }
         }
@@ -405,9 +400,9 @@ namespace NFine.Code
             //if(!File.Exists(FilePath))    
             //File.Create(FilePath);    
             //以上写法会报错,详细解释请看下文.........   
-            if (!File.Exists(FilePath))
+            if (!System.IO.File.Exists(FilePath))
             {
-                FileStream fs = File.Create(FilePath);
+                FileStream fs = System.IO.File.Create(FilePath);
                 fs.Close();
             }
         }
@@ -442,7 +437,7 @@ namespace NFine.Code
             {
                 foreach (string s in files)
                 {
-                    File.Delete(varToDirectory + s.Substring(s.LastIndexOf("\\")));
+                    System.IO.File.Delete(varToDirectory + s.Substring(s.LastIndexOf("\\")));
                 }
             }
         }
@@ -458,85 +453,6 @@ namespace NFine.Code
             //获取文件的名称
             FileInfo fi = new FileInfo(filePath);
             return fi.Name;
-        }
-        #endregion
-
-        #region 复制文件参考方法,页面中引用
-        /// <summary>
-        /// 复制文件参考方法,页面中引用
-        /// </summary>
-        /// <param name="cDir">新路径</param>
-        /// <param name="TempId">模板引擎替换编号</param>
-        public static void CopyFiles(string cDir, string TempId)
-        {
-            //if (Directory.Exists(Request.PhysicalApplicationPath + "\\Controls"))
-            //{
-            //    string TempStr = string.Empty;
-            //    StreamWriter sw;
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\Default.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\Default.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\Default.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\Column.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\Column.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\List.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\Content.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\Content.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\View.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\MoreDiss.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\MoreDiss.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\DissList.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\ShowDiss.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\ShowDiss.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\Diss.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\Review.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\Review.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\Review.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //    if (File.Exists(Request.PhysicalApplicationPath + "\\Controls\\Search.aspx"))
-            //    {
-            //        TempStr = File.ReadAllText(Request.PhysicalApplicationPath + "\\Controls\\Search.aspx");
-            //        TempStr = TempStr.Replace("{$ChannelId$}", TempId);
-
-            //        sw = new StreamWriter(Request.PhysicalApplicationPath + "\\" + cDir + "\\Search.aspx", false, System.Text.Encoding.GetEncoding("GB2312"));
-            //        sw.Write(TempStr);
-            //        sw.Close();
-            //    }
-            //}
         }
         #endregion
 
@@ -625,7 +541,7 @@ namespace NFine.Code
         public static int GetLineCount(string filePath)
         {
             //将文本文件的各行读到一个字符串数组中
-            string[] rows = File.ReadAllLines(filePath);
+            string[] rows = System.IO.File.ReadAllLines(filePath);
 
             //返回行数
             return rows.Length;
@@ -709,7 +625,7 @@ namespace NFine.Code
         public static void WriteText(string filePath, string text, Encoding encoding)
         {
             //向文件写入内容
-            File.WriteAllText(filePath, text, encoding);
+            System.IO.File.WriteAllText(filePath, text, encoding);
         }
         #endregion
 
@@ -721,7 +637,7 @@ namespace NFine.Code
         /// <param name="content">写入的内容</param>
         public static void AppendText(string filePath, string content)
         {
-            File.AppendAllText(filePath, content);
+            System.IO.File.AppendAllText(filePath, content);
         }
         #endregion
 
@@ -733,7 +649,7 @@ namespace NFine.Code
         /// <param name="destFilePath">目标文件的绝对路径</param>
         public static void Copy(string sourceFilePath, string destFilePath)
         {
-            File.Copy(sourceFilePath, destFilePath, true);
+            System.IO.File.Copy(sourceFilePath, destFilePath, true);
         }
         #endregion
 
@@ -756,7 +672,7 @@ namespace NFine.Code
                     DeleteFile(descDirectoryPath + "\\" + sourceFileName);
                 }
                 //将文件移动到指定目录
-                File.Move(sourceFilePath, descDirectoryPath + "\\" + sourceFileName);
+                System.IO.File.Move(sourceFilePath, descDirectoryPath + "\\" + sourceFileName);
             }
         }
         #endregion
@@ -821,7 +737,7 @@ namespace NFine.Code
         public static void ClearFile(string filePath)
         {
             //删除文件
-            File.Delete(filePath);
+            System.IO.File.Delete(filePath);
 
             //重新创建该文件
             CreateFile(filePath);

@@ -1,32 +1,24 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NFine.Code;
+using Nice.Common.Security;
 
-namespace NFine.Code
+
+namespace Nice.Common.Configs
 {
-    public class DBConnection
+    public class DbConnection
     {
         public static bool Encrypt { get; set; }
-        public DBConnection(bool encrypt)
+        public DbConnection(bool encrypt)
         {
             Encrypt = encrypt;
         }
-        public static string connectionString
+        public static string ConnectionString
         {
             get
             {
                 string connection = System.Configuration.ConfigurationManager.ConnectionStrings["NiceDbContext"].ConnectionString;
                 if (Encrypt == true)
                 {
-                    return DESEncrypt.Decrypt(connection);
+                    return DesEncrypt.Decrypt(connection);
                 }
                 else
                 {

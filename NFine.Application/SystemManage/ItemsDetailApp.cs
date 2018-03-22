@@ -10,6 +10,8 @@ using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Common.Extend;
+
 
 namespace NFine.Application.SystemManage
 {

@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using NFine.Code;
+using Nice.Common.Web;
 
 
 namespace Nice.Data.Repository

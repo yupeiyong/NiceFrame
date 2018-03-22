@@ -1,5 +1,8 @@
 ﻿using NFine.Code;
 using System.Web.Mvc;
+using Nice.Common.Operator;
+using Nice.Common.Web;
+
 
 namespace NFine.Web
 {

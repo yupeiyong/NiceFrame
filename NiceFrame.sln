@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFine.Web", "NFine.Web\NFin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFine.Application", "NFine.Application\NFine.Application.csproj", "{F2035EE2-B73D-4FB8-A433-CAB465DE6A2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFine.Code", "NFine.Code\NFine.Code.csproj", "{DB19CE03-C307-43FE-A209-08AA4AE10E21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Common", "NFine.Code\Nice.Common.csproj", "{DB19CE03-C307-43FE-A209-08AA4AE10E21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Data", "NFine.Data\Nice.Data.csproj", "{F71003E8-A836-48F4-9DF6-DF9095CEBD18}"
 EndProject

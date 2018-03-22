@@ -1,17 +1,14 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Web;
+using Nice.Common.Extend;
+using Nice.Common.Json;
 
-namespace NFine.Code
+
+namespace Nice.Common.Net
 {
     /// <summary>
     /// 网络操作

@@ -11,6 +11,8 @@ using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Common.Cache;
+using Nice.Common.Operator;
 using Nice.ViewModel;
 
 

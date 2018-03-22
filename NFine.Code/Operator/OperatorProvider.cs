@@ -1,10 +1,10 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-namespace NFine.Code
+﻿using NFine.Code;
+using Nice.Common.Json;
+using Nice.Common.Security;
+using Nice.Common.Web;
+
+
+namespace Nice.Common.Operator
 {
     public class OperatorProvider
     {
@@ -13,18 +13,18 @@ namespace NFine.Code
             get { return new OperatorProvider(); }
         }
         private string LoginUserKey = "nfine_loginuserkey_2016";
-        private string LoginProvider = Configs.GetValue("LoginProvider");
+        private string LoginProvider = Nice.Common.Configs.Configs.GetValue("LoginProvider");
 
         public OperatorModel GetCurrent()
         {
             OperatorModel operatorModel = new OperatorModel();
             if (LoginProvider == "Cookie")
             {
-                operatorModel = DESEncrypt.Decrypt(WebHelper.GetCookie(LoginUserKey).ToString()).ToObject<OperatorModel>();
+                operatorModel = DesEncrypt.Decrypt(WebHelper.GetCookie(LoginUserKey).ToString()).ToObject<OperatorModel>();
             }
             else
             {
-                operatorModel = DESEncrypt.Decrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<OperatorModel>();
+                operatorModel = DesEncrypt.Decrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<OperatorModel>();
             }
             return operatorModel;
         }
@@ -32,13 +32,13 @@ namespace NFine.Code
         {
             if (LoginProvider == "Cookie")
             {
-                WebHelper.WriteCookie(LoginUserKey, DESEncrypt.Encrypt(operatorModel.ToJson()), 60);
+                WebHelper.WriteCookie(LoginUserKey, DesEncrypt.Encrypt(operatorModel.ToJson()), 60);
             }
             else
             {
-                WebHelper.WriteSession(LoginUserKey, DESEncrypt.Encrypt(operatorModel.ToJson()));
+                WebHelper.WriteSession(LoginUserKey, DesEncrypt.Encrypt(operatorModel.ToJson()));
             }
-            WebHelper.WriteCookie("nfine_mac", Md5.md5(Net.GetMacByNetworkInterface().ToJson(), 32));
+            WebHelper.WriteCookie("nfine_mac", Md5.md5(Net.Net.GetMacByNetworkInterface().ToJson(), 32));
             WebHelper.WriteCookie("nfine_licence", Licence.GetLicence());
         }
         public void RemoveCurrent()

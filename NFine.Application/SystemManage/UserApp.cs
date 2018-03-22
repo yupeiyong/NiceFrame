@@ -10,6 +10,10 @@ using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
+using Nice.Common.Extend;
+using Nice.Common.Security;
+using Nice.Common.Web;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -62,7 +66,7 @@ namespace NFine.Application.SystemManage
                 if (userEntity.F_EnabledMark == true)
                 {
                     UserLogOnEntity userLogOnEntity = userLogOnApp.GetForm(userEntity.F_Id);
-                    string dbPassword = Md5.md5(DESEncrypt.Encrypt(password.ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
+                    string dbPassword = Md5.md5(DesEncrypt.Encrypt(password.ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
                     if (dbPassword == userLogOnEntity.F_UserPassword)
                     {
                         DateTime lastVisitTime = DateTime.Now;

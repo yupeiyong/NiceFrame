@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Nice.Common.Configs;
+using Nice.Common.Mail;
+
 
 namespace NFine.Web.Areas.ExampleManage.Controllers
 {

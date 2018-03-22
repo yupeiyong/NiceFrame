@@ -10,6 +10,8 @@ using NFine.Domain.Entity.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Nice.Common.Web.TreeView;
+
 
 namespace NFine.Web.Areas.SystemManage.Controllers
 {

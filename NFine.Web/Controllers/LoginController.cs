@@ -9,6 +9,13 @@ using NFine.Domain.Entity.SystemManage;
 using NFine.Application.SystemManage;
 using NFine.Code;
 using NFine.Application;
+using Nice.Common;
+using Nice.Common.Extend;
+using Nice.Common.Json;
+using Nice.Common.Net;
+using Nice.Common.Operator;
+using Nice.Common.Security;
+
 
 namespace NFine.Web.Controllers
 {
@@ -69,7 +76,7 @@ namespace NFine.Web.Controllers
                     operatorModel.LoginIPAddress = Net.Ip;
                     operatorModel.LoginIPAddressName = Net.GetLocation(operatorModel.LoginIPAddress);
                     operatorModel.LoginTime = DateTime.Now;
-                    operatorModel.LoginToken = DESEncrypt.Encrypt(Guid.NewGuid().ToString());
+                    operatorModel.LoginToken = DesEncrypt.Encrypt(Guid.NewGuid().ToString());
                     if (userEntity.F_Account == "admin")
                     {
                         operatorModel.IsSystem = true;

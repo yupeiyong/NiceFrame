@@ -3,6 +3,9 @@ using NFine.Code;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Nice.Common.Operator;
+using Nice.Common.Web;
+
 
 namespace NFine.Web
 {
@@ -15,7 +18,9 @@ namespace NFine.Web
         }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (OperatorProvider.Provider.GetCurrent().IsSystem)
+            var current = OperatorProvider.Provider.GetCurrent();
+            if (current == null) return;
+            if (current.IsSystem)
             {
                 return;
             }

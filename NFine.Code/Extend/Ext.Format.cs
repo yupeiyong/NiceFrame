@@ -1,10 +1,4 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-namespace NFine.Code
+﻿namespace Nice.Common.Extend
 {
     public static partial class Ext
     {
@@ -53,7 +47,7 @@ namespace NFine.Code
         {
             if (number == 0)
                 return defaultValue;
-            return string.Format("{0:0.##}", number);
+            return $"{number:0.##}";
         }
         /// <summary>
         /// 获取格式化字符串
@@ -73,7 +67,7 @@ namespace NFine.Code
         {
             if (number == 0)
                 return defaultValue;
-            return string.Format("{0:0.##}", number);
+            return $"{number:0.##}";
         }
         /// <summary>
         /// 获取格式化字符串
@@ -92,7 +86,7 @@ namespace NFine.Code
         {
             if (number == 0)
                 return "￥0";
-            return string.Format("￥{0:0.##}", number);
+            return $"￥{number:0.##}";
         }
         /// <summary>
         /// 获取格式化字符串,带￥
@@ -110,7 +104,7 @@ namespace NFine.Code
         {
             if (number == 0)
                 return string.Empty;
-            return string.Format("{0:0.##}%", number);
+            return $"{number:0.##}%";
         }
         /// <summary>
         /// 获取格式化字符串,带%
@@ -128,7 +122,7 @@ namespace NFine.Code
         {
             if (number == 0)
                 return string.Empty;
-            return string.Format("{0:0.##}%", number);
+            return $"{number:0.##}%";
         }
         /// <summary>
         /// 获取格式化字符串,带%

@@ -6,6 +6,9 @@
 *********************************************************************************/
 using NFine.Code;
 using System;
+using Nice.Common;
+using Nice.Common.Operator;
+
 
 namespace NFine.Domain
 {

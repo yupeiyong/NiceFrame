@@ -1,15 +1,10 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using log4net;
-using System;
+﻿using System;
 using System.IO;
 using System.Web;
+using log4net;
 
-namespace NFine.Code
+
+namespace Nice.Common.Log
 {
     public class LogFactory
     {

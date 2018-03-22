@@ -4,9 +4,11 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
+
 using System;
 
-namespace NFine.Code
+
+namespace Nice.Common.Operator
 {
     public class OperatorModel
     {

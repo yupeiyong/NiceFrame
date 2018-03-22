@@ -8,6 +8,8 @@ using NFine.Application.SystemSecurity;
 using NFine.Code;
 using NFine.Domain.Entity.SystemSecurity;
 using System.Web.Mvc;
+using Nice.Common.Json;
+
 
 namespace NFine.Web.Areas.SystemSecurity.Controllers
 {

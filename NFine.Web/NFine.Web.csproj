@@ -424,9 +424,9 @@
       <Project>{f2035ee2-b73d-4fb8-a433-cab465de6a2a}</Project>
       <Name>NFine.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Code\NFine.Code.csproj">
+    <ProjectReference Include="..\NFine.Code\Nice.Common.csproj">
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
-      <Name>NFine.Code</Name>
+      <Name>Nice.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>

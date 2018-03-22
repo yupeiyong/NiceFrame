@@ -1,18 +1,15 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
+﻿using System.Data;
+using System.IO;
+using NFine.Code;
+using Nice.Common.Extend;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
-using System.Data;
-using System.IO;
 
-namespace NFine.Code.Excel
+
+namespace Nice.Common.Excel
 {
-    public class NPOIExcel
+    public class NpoiExcel
     {
         private string _title;
         private string _sheetName;

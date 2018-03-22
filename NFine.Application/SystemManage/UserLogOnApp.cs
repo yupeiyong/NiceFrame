@@ -8,6 +8,9 @@ using NFine.Code;
 using NFine.Domain.Entity.SystemManage;
 using NFine.Domain.IRepository.SystemManage;
 using NFine.Repository.SystemManage;
+using Nice.Common;
+using Nice.Common.Security;
+
 
 namespace NFine.Application.SystemManage
 {
@@ -28,7 +31,7 @@ namespace NFine.Application.SystemManage
             UserLogOnEntity userLogOnEntity = new UserLogOnEntity();
             userLogOnEntity.F_Id = keyValue;
             userLogOnEntity.F_UserSecretkey = Md5.md5(Common.CreateNo(), 16).ToLower();
-            userLogOnEntity.F_UserPassword = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
+            userLogOnEntity.F_UserPassword = Md5.md5(DesEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), userLogOnEntity.F_UserSecretkey).ToLower(), 32).ToLower();
             service.Update(userLogOnEntity);
         }
     }

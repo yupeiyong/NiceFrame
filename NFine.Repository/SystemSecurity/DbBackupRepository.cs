@@ -8,6 +8,7 @@ using NFine.Code;
 using NFine.Domain.Entity.SystemSecurity;
 using NFine.Domain.IRepository.SystemSecurity;
 using NFine.Repository.SystemSecurity;
+using Nice.Common.File;
 using Nice.Data.Extensions;
 using Nice.Data.Repository;
 

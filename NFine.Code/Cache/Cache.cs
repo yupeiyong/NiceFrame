@@ -1,19 +1,13 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using System;
+﻿using System;
 using System.Collections;
 using System.Web;
 
 
-namespace NFine.Code
+namespace Nice.Common.Cache
 {
     public class Cache : ICache
     {
-        private static System.Web.Caching.Cache cache = HttpRuntime.Cache;
+        private static readonly System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
         public T GetCache<T>(string cacheKey) where T : class
         {
@@ -37,10 +31,10 @@ namespace NFine.Code
         }
         public void RemoveCache()
         {
-            IDictionaryEnumerator CacheEnum = cache.GetEnumerator();
-            while (CacheEnum.MoveNext())
+            IDictionaryEnumerator cacheEnum = cache.GetEnumerator();
+            while (cacheEnum.MoveNext())
             {
-                cache.Remove(CacheEnum.Key.ToString());
+                if (cacheEnum.Key != null) cache.Remove(cacheEnum.Key.ToString());
             }
         }
     }

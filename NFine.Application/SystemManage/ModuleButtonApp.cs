@@ -11,6 +11,9 @@ using NFine.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nice.Common;
+using Nice.Common.Extend;
+
 
 namespace NFine.Application.SystemManage
 {
