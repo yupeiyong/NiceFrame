@@ -420,19 +420,19 @@
     <Content Include="Configs\database.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NFine.Application\Nice.Service.csproj">
+    <ProjectReference Include="..\Nice.Service\Nice.Service.csproj">
       <Project>{f2035ee2-b73d-4fb8-a433-cab465de6a2a}</Project>
       <Name>Nice.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Code\Nice.Common.csproj">
+    <ProjectReference Include="..\Nice.Code\Nice.Common.csproj">
       <Project>{db19ce03-c307-43fe-a209-08aa4ae10e21}</Project>
       <Name>Nice.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Domain\Nice.Domain.csproj">
+    <ProjectReference Include="..\Nice.Domain\Nice.Domain.csproj">
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
       <Name>Nice.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NFine.Mapping\Nice.Mapping.csproj">
+    <ProjectReference Include="..\Nice.Mapping\Nice.Mapping.csproj">
       <Project>{4e642cbe-f6c5-4cb9-9474-6b349652fe77}</Project>
       <Name>Nice.Mapping</Name>
     </ProjectReference>

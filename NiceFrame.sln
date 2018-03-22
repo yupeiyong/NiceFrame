@@ -7,19 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Libraries", "1.Libraries"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Presentation", "2.Presentation", "{246887F0-38A8-473C-AB69-38341F991E6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.WebPc", "NFine.Web\Nice.WebPc.csproj", "{BEF1F2C9-1903-4AC4-93BD-08452BFA37A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.WebPc", "Nice.Web\Nice.WebPc.csproj", "{BEF1F2C9-1903-4AC4-93BD-08452BFA37A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Service", "NFine.Application\Nice.Service.csproj", "{F2035EE2-B73D-4FB8-A433-CAB465DE6A2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Service", "Nice.Service\Nice.Service.csproj", "{F2035EE2-B73D-4FB8-A433-CAB465DE6A2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Common", "NFine.Code\Nice.Common.csproj", "{DB19CE03-C307-43FE-A209-08AA4AE10E21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Common", "Nice.Code\Nice.Common.csproj", "{DB19CE03-C307-43FE-A209-08AA4AE10E21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Data", "NFine.Data\Nice.Data.csproj", "{F71003E8-A836-48F4-9DF6-DF9095CEBD18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Data", "Nice.Data\Nice.Data.csproj", "{F71003E8-A836-48F4-9DF6-DF9095CEBD18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Domain", "NFine.Domain\Nice.Domain.csproj", "{7DC886CD-B8A0-44E8-AADD-57FCB0CFECB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Domain", "Nice.Domain\Nice.Domain.csproj", "{7DC886CD-B8A0-44E8-AADD-57FCB0CFECB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Mapping", "NFine.Mapping\Nice.Mapping.csproj", "{4E642CBE-F6C5-4CB9-9474-6B349652FE77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Mapping", "Nice.Mapping\Nice.Mapping.csproj", "{4E642CBE-F6C5-4CB9-9474-6B349652FE77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Repository", "NFine.Repository\Nice.Repository.csproj", "{875233BF-EA15-49E0-9A9C-77884A897FF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Repository", "Nice.Repository\Nice.Repository.csproj", "{875233BF-EA15-49E0-9A9C-77884A897FF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.UnitTest", "3.UnitTest", "{F3A976B2-2A37-4735-9991-11380D020DD8}"
 EndProject
