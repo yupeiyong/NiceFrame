@@ -1,10 +1,10 @@
-﻿using NFine.Code;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using NFine.Code;
 using Nice.Common.Json;
 using Nice.Common.Log;
 
 
-namespace NFine.Web
+namespace Nice.WebPc.Handler
 {
     public class HandlerErrorAttribute : HandleErrorAttribute
     {

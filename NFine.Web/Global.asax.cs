@@ -1,8 +1,8 @@
-﻿using NFine.Code;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace NFine.Web
+
+namespace Nice.WebPc
 {
     public class MvcApplication : System.Web.HttpApplication
     {

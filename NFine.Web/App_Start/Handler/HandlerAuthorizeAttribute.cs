@@ -1,13 +1,12 @@
-﻿using NFine.Application.SystemManage;
-using NFine.Code;
-using System.Text;
+﻿using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using NFine.Application.SystemManage;
 using Nice.Common.Operator;
 using Nice.Common.Web;
 
 
-namespace NFine.Web
+namespace Nice.WebPc.Handler
 {
     public class HandlerAuthorizeAttribute : ActionFilterAttribute
     {

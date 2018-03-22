@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
+using Nice.WebPc.Handler;
 
-namespace NFine.Web
+
+namespace Nice.WebPc
 {
     public class FilterConfig
     {

@@ -1,12 +1,9 @@
-﻿using NFine.Application.SystemSecurity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.Mvc;
-using NFine.Application.SystemManage;
-using NFine.Code;
 using NFine.Application;
+using NFine.Application.SystemManage;
+using NFine.Application.SystemSecurity;
+using NFine.Code;
 using Nice.Common;
 using Nice.Common.Extend;
 using Nice.Common.Json;
@@ -15,9 +12,10 @@ using Nice.Common.Operator;
 using Nice.Common.Security;
 using Nice.Domain.Entity.SystemManage;
 using Nice.Domain.Entity.SystemSecurity;
+using Nice.WebPc.Handler;
 
 
-namespace NFine.Web.Controllers
+namespace Nice.WebPc.Controllers
 {
     public class LoginController : Controller
     {

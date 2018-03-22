@@ -1,20 +1,14 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
+﻿using System.Web.Mvc;
 using NFine.Application.SystemSecurity;
-using NFine.Code;
-using System.Web.Mvc;
 using Nice.Common.File;
 using Nice.Common.Json;
 using Nice.Domain.Entity.SystemSecurity;
+using Nice.WebPc.Handler;
 
 
-namespace NFine.Web.Areas.SystemSecurity.Controllers
+namespace Nice.WebPc.Areas.SystemSecurity.Controllers
 {
-    public class DbBackupController : ControllerBase
+    public class DbBackupController : Nice.WebPc.Handler.ControllerBase
     {
         private DbBackupApp dbBackupApp = new DbBackupApp();
 

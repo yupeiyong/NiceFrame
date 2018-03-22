@@ -4,13 +4,12 @@
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
-using NFine.Application.SystemManage;
-using NFine.Code;
-using System.Collections.Generic;
-using System.Text;
-using System.Web.Mvc;
 
-namespace NFine.Web.Controllers
+using System.Web.Mvc;
+using Nice.WebPc.Handler;
+
+
+namespace Nice.WebPc.Controllers
 {
     [HandlerLogin]
     public class HomeController : Controller

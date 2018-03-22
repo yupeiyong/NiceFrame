@@ -1,16 +1,12 @@
 ﻿using System.Web.Mvc;
 
-namespace NFine.Web.Areas.SystemManage
+
+namespace Nice.WebPc.Areas.SystemManage
 {
     public class SystemManageAreaRegistration : AreaRegistration
     {
-        public override string AreaName
-        {
-            get
-            {
-                return "SystemManage";
-            }
-        }
+        public override string AreaName => "SystemManage";
+
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

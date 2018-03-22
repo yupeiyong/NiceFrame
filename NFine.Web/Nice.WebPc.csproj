@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NFine.Web</RootNamespace>
-    <AssemblyName>NFine.Web</AssemblyName>
+    <RootNamespace>Nice.WebPc</RootNamespace>
+    <AssemblyName>Nice.WebPc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -110,11 +110,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\01 Handler\HandlerAjaxOnlyAttribute.cs" />
-    <Compile Include="App_Start\01 Handler\HandlerAuthorizeAttribute.cs" />
-    <Compile Include="App_Start\01 Handler\HandlerErrorAttribute.cs" />
-    <Compile Include="App_Start\01 Handler\HandlerLoginAttribute.cs" />
-    <Compile Include="App_Start\01 Handler\ControllerBase.cs" />
+    <Compile Include="App_Start\Handler\HandlerAjaxOnlyAttribute.cs" />
+    <Compile Include="App_Start\Handler\HandlerAuthorizeAttribute.cs" />
+    <Compile Include="App_Start\Handler\HandlerErrorAttribute.cs" />
+    <Compile Include="App_Start\Handler\HandlerLoginAttribute.cs" />
+    <Compile Include="App_Start\Handler\ControllerBase.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\BarCodeController.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\PrintController.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\SendMailController.cs" />

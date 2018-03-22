@@ -1,23 +1,13 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
+﻿using System.Web.Mvc;
 using NFine.Application.SystemSecurity;
-using NFine.Code;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using Nice.Common.Json;
 using Nice.Common.Web;
+using Nice.WebPc.Handler;
 
 
-namespace NFine.Web.Areas.SystemSecurity.Controllers
+namespace Nice.WebPc.Areas.SystemSecurity.Controllers
 {
-    public class LogController : ControllerBase
+    public class LogController : Nice.WebPc.Handler.ControllerBase
     {
         private LogApp logApp = new LogApp();
 

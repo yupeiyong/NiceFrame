@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Libraries", "1.Libraries"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Presentation", "2.Presentation", "{246887F0-38A8-473C-AB69-38341F991E6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFine.Web", "NFine.Web\NFine.Web.csproj", "{BEF1F2C9-1903-4AC4-93BD-08452BFA37A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.WebPc", "NFine.Web\Nice.WebPc.csproj", "{BEF1F2C9-1903-4AC4-93BD-08452BFA37A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFine.Application", "NFine.Application\NFine.Application.csproj", "{F2035EE2-B73D-4FB8-A433-CAB465DE6A2A}"
 EndProject

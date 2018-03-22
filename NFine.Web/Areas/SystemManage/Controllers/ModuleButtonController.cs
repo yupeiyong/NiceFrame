@@ -1,24 +1,18 @@
-﻿/*******************************************************************************
- * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
- * Description: NFine快速开发平台
- * Website：http://www.nfine.cn
-*********************************************************************************/
-using NFine.Application.SystemManage;
-using NFine.Code;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using NFine.Application.SystemManage;
 using Nice.Common.Json;
 using Nice.Common.Web.Tree;
 using Nice.Common.Web.TreeGrid;
 using Nice.Common.Web.TreeView;
 using Nice.Domain.Entity.SystemManage;
+using Nice.WebPc.Handler;
 
 
-namespace NFine.Web.Areas.SystemManage.Controllers
+namespace Nice.WebPc.Areas.SystemManage.Controllers
 {
-    public class ModuleButtonController : ControllerBase
+    public class ModuleButtonController : Nice.WebPc.Handler.ControllerBase
     {
         private ModuleApp moduleApp = new ModuleApp();
         private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
