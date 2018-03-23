@@ -10,7 +10,7 @@ namespace Nice.WebPc.Areas.SystemManage
         public override string AreaName => "SystemManage";
 
 
-        public override void RegisterArea(AreaRegistrationContext context)
+        public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
               AreaName + "_Default",
