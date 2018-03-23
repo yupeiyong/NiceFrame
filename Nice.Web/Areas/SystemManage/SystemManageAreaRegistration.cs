@@ -14,7 +14,7 @@ namespace Nice.WebPc.Areas.SystemManage
               this.AreaName + "_Default",
               this.AreaName + "/{controller}/{action}/{id}",
               new { area = this.AreaName, controller = "Home", action = "Index", id = UrlParameter.Optional },
-              new string[] { "Nice.Web.Areas." + this.AreaName + ".Controllers" }
+              new string[] { "Nice.WebPc.Areas." + this.AreaName + ".Controllers" }
             );
         }
     }
