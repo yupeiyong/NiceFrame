@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using System.Web.UI;
+using Nice.WebPc.Areas.SystemManage.Controllers;
 
 
 namespace Nice.WebPc.Areas.SystemManage
@@ -11,10 +13,10 @@ namespace Nice.WebPc.Areas.SystemManage
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-              this.AreaName + "_Default",
-              this.AreaName + "/{controller}/{action}/{id}",
-              new { area = this.AreaName, controller = "Home", action = "Index", id = UrlParameter.Optional },
-              new string[] { "Nice.WebPc.Areas." + this.AreaName + ".Controllers" }
+              AreaName + "_Default",
+              AreaName + "/{controller}/{action}/{id}",
+              new { area = AreaName, controller = "Home", action = "Index", id = UrlParameter.Optional },
+              new[] { typeof(RoleController).Namespace }
             );
         }
     }
