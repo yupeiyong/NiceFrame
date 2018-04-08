@@ -61,7 +61,7 @@ namespace Nice.WebPc.Controllers
                     throw new Exception("验证码错误，请重新输入");
                 }
 
-                UserBaseEntity userBaseEntity = new UserService().CheckLogin(username, password);
+                var userBaseEntity = new UserService().CheckLogin(username, password);
                 if (userBaseEntity != null)
                 {
                     OperatorModel operatorModel = new OperatorModel();
