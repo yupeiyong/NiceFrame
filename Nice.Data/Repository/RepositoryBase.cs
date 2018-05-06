@@ -120,15 +120,15 @@ namespace Nice.Data.Repository
         {
             return dbcontext.Set<TEntity>().Where(predicate);
         }
-        public List<TEntity> FindList<TEntity>(string strSql) where TEntity : class
+        public List<TEntity> Search<TEntity>(string strSql) where TEntity : class
         {
             return dbcontext.Database.SqlQuery<TEntity>(strSql).ToList<TEntity>();
         }
-        public List<TEntity> FindList<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class
+        public List<TEntity> Search<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class
         {
             return dbcontext.Database.SqlQuery<TEntity>(strSql, dbParameter).ToList<TEntity>();
         }
-        public List<TEntity> FindList<TEntity>(Pagination pagination) where TEntity : class,new()
+        public List<TEntity> Search<TEntity>(Pagination pagination) where TEntity : class,new()
         {
             bool isAsc = pagination.sord.ToLower() == "asc" ? true : false;
             string[] _order = pagination.sidx.Split(',');
@@ -156,7 +156,7 @@ namespace Nice.Data.Repository
             tempData = tempData.Skip<TEntity>(pagination.rows * (pagination.page - 1)).Take<TEntity>(pagination.rows).AsQueryable();
             return tempData.ToList();
         }
-        public List<TEntity> FindList<TEntity>(Expression<Func<TEntity, bool>> predicate, Pagination pagination) where TEntity : class,new()
+        public List<TEntity> Search<TEntity>(Expression<Func<TEntity, bool>> predicate, Pagination pagination) where TEntity : class,new()
         {
             bool isAsc = pagination.sord.ToLower() == "asc" ? true : false;
             string[] _order = pagination.sidx.Split(',');
